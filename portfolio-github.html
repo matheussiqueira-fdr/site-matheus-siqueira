@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portfólio GitHub | Matheus Siqueira</title>
-<meta name="description" content="Repositórios públicos de Matheus Siqueira no GitHub, carregados ao vivo pela API do GitHub.">
+<meta name="description" content="Projetos de Matheus Siqueira, carregados ao vivo a partir do GitHub.">
 <style>
   :root {
     --bg: #f6f7f9;
@@ -14,6 +14,8 @@
     --line: #dde3ea;
     --accent: #2b6f77;
     --accent-soft: #e4f1f2;
+    --private: #8a5a00;
+    --private-soft: #fbf0d9;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -24,6 +26,8 @@
       --line: #2a343e;
       --accent: #6cc2cb;
       --accent-soft: #1f3337;
+      --private: #e7b75a;
+      --private-soft: #3a2f1a;
     }
   }
   :root[data-theme="dark"] {
@@ -34,6 +38,8 @@
     --line: #2a343e;
     --accent: #6cc2cb;
     --accent-soft: #1f3337;
+    --private: #e7b75a;
+    --private-soft: #3a2f1a;
   }
   * { box-sizing: border-box; }
   body {
@@ -53,14 +59,18 @@
     font-size: clamp(1.6rem, 4vw, 2.2rem);
   }
   header p { margin: 0; color: var(--muted); }
-  .profile-link {
-    display: inline-block;
+  .profile-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
     margin-top: 14px;
-    color: var(--accent);
+  }
+  a { color: var(--accent); }
+  .profile-links a {
     font-weight: 600;
     text-decoration: none;
   }
-  .profile-link:hover { text-decoration: underline; }
+  .profile-links a:hover { text-decoration: underline; }
   .toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -93,15 +103,9 @@
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 12px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s, transform 0.15s;
+    transition: border-color 0.15s;
   }
-  .repo:hover, .repo:focus-visible {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-    outline: none;
-  }
+  .repo:hover, .repo:focus-within { border-color: var(--accent); }
   .repo h2 {
     margin: 0;
     font-size: 1.05rem;
@@ -120,14 +124,28 @@
     font-size: 0.82rem;
     color: var(--muted);
   }
-  .lang {
+  .tag {
     padding: 2px 8px;
     border-radius: 999px;
     background: var(--accent-soft);
     color: var(--accent);
     font-weight: 600;
   }
+  .tag.private {
+    background: var(--private-soft);
+    color: var(--private);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .links a { text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
   .state {
+    grid-column: 1 / -1;
     padding: 24px;
     border: 1px dashed var(--line);
     border-radius: 12px;
@@ -148,30 +166,34 @@
 <main>
   <header>
     <h1>Portfólio GitHub</h1>
-    <p>Matheus Siqueira · Projetos públicos, carregados ao vivo a partir do GitHub</p>
-    <a class="profile-link" href="https://github.com/matheussiqueira-fdr" target="_blank" rel="noopener">Ver perfil completo no GitHub →</a>
+    <p>Matheus Siqueira · Projetos carregados ao vivo a partir do GitHub</p>
+    <div class="profile-links">
+      <a href="https://github.com/matheussiqueira-fdr" target="_blank" rel="noopener">github.com/matheussiqueira-fdr →</a>
+      <a href="https://github.com/matheussiqueira-code" target="_blank" rel="noopener">github.com/matheussiqueira-code →</a>
+    </div>
   </header>
 
   <div class="toolbar">
-    <span class="count" id="count">Carregando repositórios…</span>
-    <input type="search" id="filter" placeholder="Filtrar por nome, descrição ou linguagem" aria-label="Filtrar repositórios" disabled>
+    <span class="count" id="count">Carregando projetos…</span>
+    <input type="search" id="filter" placeholder="Filtrar por nome, descrição ou linguagem" aria-label="Filtrar projetos" disabled>
   </div>
 
   <section class="grid" id="repos" aria-live="polite"></section>
 
   <footer>
-    Esta página não tem lista fixa: os repositórios, descrições e linguagens vêm da API pública do GitHub a cada visita.
+    Esta página não tem lista fixa: nomes, descrições, linguagens e links vêm do GitHub a cada visita.
+    Projetos marcados como privados têm código fechado; quando há versão no ar, o link leva até ela.
   </footer>
 </main>
 
 <script>
-  const USER = "matheussiqueira-fdr";
-  const API = `https://api.github.com/users/${USER}/repos?per_page=100&sort=updated&type=owner`;
+  const API_PROPRIA = "/api/projetos";
+  const API_GITHUB = "https://api.github.com/users/matheussiqueira-fdr/repos?per_page=100&type=owner";
 
   const list = document.getElementById("repos");
   const count = document.getElementById("count");
   const filter = document.getElementById("filter");
-  let repos = [];
+  let projetos = [];
 
   function el(tag, className, text) {
     const node = document.createElement(tag);
@@ -180,15 +202,23 @@
     return node;
   }
 
+  function link(href, text) {
+    const a = el("a", null, text);
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    return a;
+  }
+
   function formatDate(iso) {
     return new Date(iso).toLocaleDateString("pt-BR", { month: "short", year: "numeric" });
   }
 
   function render() {
     const q = filter.value.trim().toLowerCase();
-    const visible = repos.filter(r => {
+    const visible = projetos.filter(p => {
       if (!q) return true;
-      return [r.name, r.description, r.language]
+      return [p.nome, p.descricao, p.linguagem, ...(p.topicos || [])]
         .filter(Boolean)
         .some(v => v.toLowerCase().includes(q));
     });
@@ -196,44 +226,73 @@
     list.replaceChildren();
 
     if (visible.length === 0) {
-      list.append(el("div", "state", q ? "Nenhum repositório encontrado para este filtro." : "Nenhum repositório público por aqui ainda."));
+      list.append(el("div", "state", q ? "Nenhum projeto encontrado para este filtro." : "Nenhum projeto por aqui ainda."));
     }
 
-    for (const r of visible) {
-      const card = el("a", "repo");
-      card.href = r.html_url;
-      card.target = "_blank";
-      card.rel = "noopener";
-
-      card.append(el("h2", null, r.name));
-      card.append(el("p", null, r.description || "Sem descrição no GitHub."));
+    for (const p of visible) {
+      const card = el("article", "repo");
+      card.append(el("h2", null, p.nome));
+      card.append(el("p", null, p.descricao || "Sem descrição no GitHub."));
 
       const meta = el("div", "meta");
-      if (r.language) meta.append(el("span", "lang", r.language));
-      if (r.stargazers_count > 0) meta.append(el("span", null, `★ ${r.stargazers_count}`));
-      meta.append(el("span", null, `Atualizado em ${formatDate(r.updated_at)}`));
+      if (p.privado) meta.append(el("span", "tag private", "Código privado"));
+      if (p.linguagem) meta.append(el("span", "tag", p.linguagem));
+      if (p.estrelas > 0) meta.append(el("span", null, `★ ${p.estrelas}`));
+      meta.append(el("span", null, `Atualizado em ${formatDate(p.atualizado)}`));
       card.append(meta);
+
+      const links = el("div", "links");
+      if (p.site) links.append(link(p.site, "Ver no ar ↗"));
+      if (p.codigo) links.append(link(p.codigo, "Código ↗"));
+      if (links.childElementCount) card.append(links);
 
       list.append(card);
     }
 
-    const total = repos.length;
+    const total = projetos.length;
     count.textContent = q
-      ? `${visible.length} de ${total} repositórios`
-      : `${total} repositórios públicos`;
+      ? `${visible.length} de ${total} projetos`
+      : `${total} projetos`;
+  }
+
+  async function carregarDaApi() {
+    const response = await fetch(API_PROPRIA);
+    if (!response.ok) throw new Error(`API respondeu ${response.status}`);
+    const data = await response.json();
+    return data.projetos;
+  }
+
+  async function carregarDoGithub() {
+    const response = await fetch(API_GITHUB, { headers: { Accept: "application/vnd.github+json" } });
+    if (!response.ok) throw new Error(`GitHub respondeu ${response.status}`);
+    const data = await response.json();
+    return data
+      .filter(r => !r.fork && !r.private && r.name !== "site-matheus-siqueira")
+      .map(r => ({
+        nome: r.name,
+        descricao: r.description,
+        linguagem: r.language,
+        site: r.homepage || null,
+        codigo: r.html_url,
+        privado: false,
+        estrelas: r.stargazers_count,
+        atualizado: r.pushed_at || r.updated_at,
+        topicos: r.topics || [],
+      }))
+      .sort((a, b) => new Date(b.atualizado) - new Date(a.atualizado));
   }
 
   async function load() {
     try {
-      const response = await fetch(API, { headers: { Accept: "application/vnd.github+json" } });
-      if (!response.ok) throw new Error(`GitHub respondeu ${response.status}`);
-      const data = await response.json();
-      repos = data.filter(r => !r.fork && !r.private);
-      repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+      try {
+        projetos = await carregarDaApi();
+      } catch {
+        projetos = await carregarDoGithub();
+      }
       filter.disabled = false;
       render();
     } catch (err) {
-      count.textContent = "Não foi possível carregar os repositórios.";
+      count.textContent = "Não foi possível carregar os projetos.";
       list.replaceChildren(el("div", "state", "Veja a lista diretamente no perfil do GitHub enquanto isso."));
     }
   }
