@@ -54,9 +54,11 @@ module.exports = async (req, res) => {
     return;
   }
 
+  let privadosRecebidos = 0;
   for (const resultado of resultados) {
     if (resultado.status !== "fulfilled") continue;
     for (const repo of resultado.value) {
+      if (repo.private) privadosRecebidos += 1;
       if (repo.fork || OCULTOS.has(repo.name)) continue;
       if (repo.private && !(repo.topics || []).includes(TOPICO)) continue;
 
@@ -73,5 +75,7 @@ module.exports = async (req, res) => {
   );
 
   res.setHeader("Cache-Control", "public, s-maxage=600, stale-while-revalidate=86400");
-  res.status(200).json({ projetos, comToken: Boolean(token) });
+  // Só o motivo da falha (ex.: "GitHub 401 em /user/repos..."), nunca o token.
+  const avisos = falhas.map((f) => String(f.reason && f.reason.message));
+  res.status(200).json({ projetos, comToken: Boolean(token), privadosRecebidos, avisos });
 };
