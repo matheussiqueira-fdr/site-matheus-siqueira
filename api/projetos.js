@@ -40,8 +40,9 @@ module.exports = async (req, res) => {
   const token = process.env.GITHUB_TOKEN;
   const vistos = new Map();
 
+  // Públicos sem token: se o token expirar ou for trocado, a página continua com eles.
   const lotes = CONTAS.map((conta) =>
-    github(`/users/${conta}/repos?per_page=100&type=owner&sort=pushed`, token)
+    github(`/users/${conta}/repos?per_page=100&type=owner&sort=pushed`)
   );
   if (token) {
     lotes.push(github("/user/repos?per_page=100&affiliation=owner&visibility=private", token));
@@ -50,7 +51,10 @@ module.exports = async (req, res) => {
   const resultados = await Promise.allSettled(lotes);
   const falhas = resultados.filter((r) => r.status === "rejected");
   if (falhas.length === resultados.length) {
-    res.status(502).json({ erro: "Não foi possível consultar o GitHub." });
+    res.status(502).json({
+      erro: "Não foi possível consultar o GitHub.",
+      avisos: falhas.map((f) => String(f.reason && f.reason.message)),
+    });
     return;
   }
 
