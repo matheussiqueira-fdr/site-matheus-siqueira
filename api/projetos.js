@@ -6,10 +6,26 @@
 //   e só com nome, descrição, linguagem e link do site. O código nunca é exposto.
 // - Privados exigem a variável de ambiente GITHUB_TOKEN na Vercel (token só de leitura
 //   da conta dona dos repositórios). Sem ela, a página mostra apenas os públicos.
+// - O link do site de um privado só sai com o tópico "demo-publica": ferramenta interna
+//   não divulga o endereço da tela de login.
+// - O tópico "destaque" coloca o projeto no topo da página.
+// - Descrição no formato "Nome: texto" vira título e descrição do card.
 
 const CONTAS = ["matheussiqueira-fdr", "matheussiqueira-code"];
 const TOPICO = "portfolio";
+const DEMO = "demo-publica";
+const DESTAQUE = "destaque";
 const OCULTOS = new Set(["site-matheus-siqueira"]);
+
+function separarNome(repo) {
+  const texto = (repo.description || "").trim();
+  const corte = texto.indexOf(": ");
+  if (corte > 0 && corte <= 40) {
+    const resto = texto.slice(corte + 2);
+    return { titulo: texto.slice(0, corte), descricao: resto.charAt(0).toUpperCase() + resto.slice(1) };
+  }
+  return { titulo: repo.name.replace(/[-_]+/g, " "), descricao: texto || null };
+}
 
 async function github(path, token) {
   const headers = {
@@ -23,16 +39,20 @@ async function github(path, token) {
 }
 
 function resumo(repo) {
+  const topicos = repo.topics || [];
+  const { titulo, descricao } = separarNome(repo);
+  const siteLiberado = !repo.private || topicos.includes(DEMO);
   return {
-    nome: repo.name,
-    descricao: repo.description,
+    nome: titulo,
+    descricao,
     linguagem: repo.language,
-    site: repo.homepage || null,
+    site: siteLiberado ? repo.homepage || null : null,
     codigo: repo.private ? null : repo.html_url,
     privado: repo.private,
+    destaque: topicos.includes(DESTAQUE),
     estrelas: repo.stargazers_count,
     atualizado: repo.pushed_at || repo.updated_at,
-    topicos: (repo.topics || []).filter((t) => t !== TOPICO),
+    topicos: topicos.filter((t) => ![TOPICO, DEMO, DESTAQUE].includes(t)),
   };
 }
 

@@ -3,302 +3,198 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfólio GitHub | Matheus Siqueira</title>
-<meta name="description" content="Projetos de Matheus Siqueira, carregados ao vivo a partir do GitHub.">
+<title>Projetos | Matheus Siqueira</title>
+<meta name="description" content="Jogos, produtos e sistemas que Matheus Siqueira construiu para o terceiro setor e para o esporte.">
+<meta property="og:title" content="Projetos | Matheus Siqueira">
+<meta property="og:description" content="Jogos, produtos e sistemas para o terceiro setor e para o esporte.">
+<meta property="og:url" content="https://matheussiqueira2.com.br/portfolio-github.html">
+<meta property="og:image" content="https://matheussiqueira2.com.br/og-image.jpg">
+<meta name="theme-color" content="#121212">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://matheussiqueira2.com.br/portfolio-github.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20fill='%23D5A83C'/%3E%3Ctext%20x='32'%20y='46'%20font-family='Arial%20Black,Arial,sans-serif'%20font-size='30'%20font-weight='900'%20text-anchor='middle'%20fill='%23121212'%3EMS%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="/fonts/big-shoulders-700.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  :root {
-    --bg: #f6f7f9;
-    --card: #ffffff;
-    --text: #1d2630;
-    --muted: #5d6b78;
-    --line: #dde3ea;
-    --accent: #2b6f77;
-    --accent-soft: #e4f1f2;
-    --private: #8a5a00;
-    --private-soft: #fbf0d9;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #12171c;
-      --card: #1a2128;
-      --text: #e6ebf0;
-      --muted: #9aa7b4;
-      --line: #2a343e;
-      --accent: #6cc2cb;
-      --accent-soft: #1f3337;
-      --private: #e7b75a;
-      --private-soft: #3a2f1a;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #12171c;
-    --card: #1a2128;
-    --text: #e6ebf0;
-    --muted: #9aa7b4;
-    --line: #2a343e;
-    --accent: #6cc2cb;
-    --accent-soft: #1f3337;
-    --private: #e7b75a;
-    --private-soft: #3a2f1a;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.5;
-  }
-  main {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 40px 16px 64px;
-  }
-  header h1 {
-    margin: 0 0 4px;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-  }
-  header p { margin: 0; color: var(--muted); }
-  .profile-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    margin-top: 14px;
-  }
-  a { color: var(--accent); }
-  .profile-links a {
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .profile-links a:hover { text-decoration: underline; }
-  .toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
-    margin: 28px 0 16px;
-  }
-  .count { color: var(--muted); font-size: 0.95rem; }
-  input[type="search"] {
-    flex: 1 1 220px;
-    max-width: 320px;
-    padding: 9px 12px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--card);
-    color: var(--text);
-    font: inherit;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 14px;
-  }
-  .repo {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 18px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    transition: border-color 0.15s;
-  }
-  .repo:hover, .repo:focus-within { border-color: var(--accent); }
-  .repo h2 {
-    margin: 0;
-    font-size: 1.05rem;
-    overflow-wrap: anywhere;
-  }
-  .repo p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.93rem;
-    flex: 1;
-  }
-  .meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-  .tag {
-    padding: 2px 8px;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .tag.private {
-    background: var(--private-soft);
-    color: var(--private);
-  }
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-  .links a { text-decoration: none; }
-  .links a:hover { text-decoration: underline; }
-  .state {
-    grid-column: 1 / -1;
-    padding: 24px;
-    border: 1px dashed var(--line);
-    border-radius: 12px;
-    color: var(--muted);
-    text-align: center;
-  }
-  footer {
-    margin-top: 40px;
-    color: var(--muted);
-    font-size: 0.88rem;
-  }
-  @media (max-width: 480px) {
-    main { padding: 28px 16px 48px; }
-  }
+@font-face{font-family:'Big Shoulders';src:url(/fonts/big-shoulders-700.woff2) format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Work Sans';src:url(/fonts/work-sans-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Work Sans';src:url(/fonts/work-sans-700.woff2) format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'DM Mono';src:url(/fonts/dm-mono-400.woff2) format('woff2');font-weight:400;font-display:swap}
+:root{--asf:#121212;--giz:#F4F3EC;--ouro:#D5A83C;--conc:#242422;--cinza:#9B9B92;--line:#2E2E2A;--chalk:#413F38;color-scheme:dark}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--asf);color:var(--giz);font-family:'Work Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.disp{font-family:'Big Shoulders',sans-serif;font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:.012em}
+.eyebrow{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.24em;color:var(--ouro)}
+.g{color:var(--ouro)}
+.chip{display:inline-flex;align-items:center;min-height:44px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.18em;padding:0 22px;border:1px solid var(--cinza);color:var(--giz);background:transparent;cursor:pointer;transition:border-color .2s}
+.chip:hover{border-color:var(--giz)}
+.chip.solid,.chip[aria-pressed="true"]{background:var(--ouro);border-color:var(--ouro);color:#121212}
+.plate{background:var(--ouro);display:inline-flex;align-items:center;justify-content:center;font-family:'Big Shoulders',sans-serif;font-weight:700;color:#121212}
+header{position:sticky;top:0;z-index:50;background:rgba(18,18,18,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hrow{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .plate{width:42px;height:32px;font-size:19px}
+.brand span:not(.plate){font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.2em}
+nav{display:flex;gap:26px;flex-wrap:wrap}
+nav a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--cinza);padding:14px 0;transition:color .2s}
+nav a:hover{color:var(--giz)}
+nav a[aria-current="page"]{color:var(--ouro)}
+.hero{padding:88px 0 40px}
+.hero h1{font-size:clamp(52px,8vw,112px);margin-top:20px;max-width:860px}
+.hero p{margin-top:24px;max-width:640px;font-size:18px;line-height:1.65;color:var(--cinza)}
+.hero p b{color:var(--giz)}
+.filtros{display:flex;flex-wrap:wrap;gap:10px;margin:36px 0 28px}
+.dest{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--conc);border:1px solid var(--line);padding:26px;display:flex;flex-direction:column;gap:14px;min-height:280px}
+.card h2{font-size:38px}
+.card p{font-size:15px;line-height:1.65;color:var(--cinza);flex:1}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;padding:5px 10px;background:var(--chalk);color:var(--giz)}
+.tag.aberto{background:var(--ouro);color:#121212}
+.ling{font-family:'DM Mono',monospace;font-size:12px;color:var(--cinza)}
+.lista{margin-top:46px}
+.linha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) 160px;gap:10px 32px;padding:24px 0;border-top:1px solid var(--line);align-items:baseline}
+.linha h3{font-size:28px;margin-bottom:8px}
+.linha p{font-size:15px;line-height:1.65;color:var(--cinza)}
+.acao{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em}
+.acao a{color:var(--ouro)}
+.acao a:hover{color:var(--giz)}
+.acao span{color:var(--cinza)}
+.estado{padding:28px;border:1px dashed var(--chalk);color:var(--cinza);text-align:center}
+.fim{margin:56px 0 0;padding:30px 0 88px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.fim p{max-width:620px;font-size:15px;line-height:1.65;color:var(--cinza)}
+[hidden]{display:none!important}
+@media (max-width:900px){.dest{grid-template-columns:1fr 1fr}.linha{grid-template-columns:1fr}nav{gap:16px}nav a{font-size:10px;letter-spacing:.14em}}
+@media (max-width:560px){.dest{grid-template-columns:1fr}.brand>span:not(.plate){display:none}.hero{padding-top:56px}}
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <h1>Portfólio GitHub</h1>
-    <p>Matheus Siqueira · Projetos carregados ao vivo a partir do GitHub</p>
-    <div class="profile-links">
-      <a href="https://github.com/matheussiqueira-fdr" target="_blank" rel="noopener">github.com/matheussiqueira-fdr →</a>
-      <a href="https://github.com/matheussiqueira-code" target="_blank" rel="noopener">github.com/matheussiqueira-code →</a>
-    </div>
-  </header>
+<header>
+ <div class="wrap hrow">
+  <a class="brand" href="/" aria-label="Início"><span class="plate">MS</span><span>MATHEUS&nbsp;SIQUEIRA</span></a>
+  <nav aria-label="Seções">
+   <a href="/#atuacao">ATUAÇÃO</a>
+   <a href="/#pilares">PILARES</a>
+   <a href="/portfolio-github.html" aria-current="page">PROJETOS</a>
+   <a href="/#conteudo">CONTEÚDO</a>
+   <a href="/#contato">CONTATO</a>
+  </nav>
+ </div>
+</header>
 
-  <div class="toolbar">
-    <span class="count" id="count">Carregando projetos…</span>
-    <input type="search" id="filter" placeholder="Filtrar por nome, descrição ou linguagem" aria-label="Filtrar projetos" disabled>
-  </div>
+<main class="wrap">
+ <section class="hero">
+  <span class="eyebrow">P3 NA PRÁTICA</span>
+  <h1 class="disp">Tecnologia que <span class="g">entra em campo.</span></h1>
+  <p>Jogos, produtos e sistemas que construí para o terceiro setor e para o esporte. <b>Os abertos ao público têm link.</b> Os de uso interno aparecem só pelo que resolvem: quem quiser ver por dentro, é só conversar.</p>
+ </section>
 
-  <section class="grid" id="repos" aria-live="polite"></section>
+ <div class="filtros" role="group" aria-label="Filtrar projetos">
+  <button type="button" class="chip" data-filtro="todos" aria-pressed="true">TODOS</button>
+  <button type="button" class="chip" data-filtro="aberto" aria-pressed="false">ABERTOS AO PÚBLICO</button>
+  <button type="button" class="chip" data-filtro="interno" aria-pressed="false">USO INTERNO</button>
+ </div>
 
-  <footer>
-    Esta página não tem lista fixa: nomes, descrições, linguagens e links vêm do GitHub a cada visita.
-    Projetos marcados como privados têm código fechado; quando há versão no ar, o link leva até ela.
-  </footer>
+ <section class="dest" id="destaques" aria-label="Destaques"></section>
+ <section class="lista" id="lista" aria-label="Todos os projetos" aria-live="polite">
+  <div class="estado">Carregando projetos…</div>
+ </section>
+
+ <div class="fim">
+  <p>A lista vem do GitHub a cada visita. Quando um projeto novo sobe, ele aparece aqui sozinho.</p>
+  <a class="chip solid" href="/#contato">PEDIR UMA DEMONSTRAÇÃO →</a>
+ </div>
 </main>
 
 <script>
-  const API_PROPRIA = "/api/projetos";
-  const API_GITHUB = "https://api.github.com/users/matheussiqueira-fdr/repos?per_page=100&type=owner";
+(function(){
+ var destaques = document.getElementById('destaques');
+ var lista = document.getElementById('lista');
+ var botoes = document.querySelectorAll('[data-filtro]');
+ var projetos = [];
+ var filtro = 'todos';
 
-  const list = document.getElementById("repos");
-  const count = document.getElementById("count");
-  const filter = document.getElementById("filter");
-  let projetos = [];
+ function el(tag, cls, texto){
+  var n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (texto) n.textContent = texto;
+  return n;
+ }
+ function linkSeguro(u){ return typeof u === 'string' && /^https?:\/\//i.test(u); }
+ function aberto(p){ return linkSeguro(p.site); }
 
-  function el(tag, className, text) {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (text !== undefined && text !== null) node.textContent = text;
-    return node;
+ function meta(p){
+  var m = el('div', 'meta');
+  m.appendChild(el('span', aberto(p) ? 'tag aberto' : 'tag', aberto(p) ? 'ABERTO AO PÚBLICO' : 'USO INTERNO'));
+  if (p.linguagem) m.appendChild(el('span', 'ling', p.linguagem));
+  return m;
+ }
+ function acao(p){
+  var box = el('div', 'acao');
+  if (aberto(p)) {
+   var a = el('a', null, 'VER NO AR ↗');
+   a.href = p.site; a.target = '_blank'; a.rel = 'noopener';
+   box.appendChild(a);
+  } else {
+   box.appendChild(el('span', null, 'DEMONSTRAÇÃO SOB CONVERSA'));
   }
+  return box;
+ }
 
-  function link(href, text) {
-    const a = el("a", null, text);
-    a.href = href;
-    a.target = "_blank";
-    a.rel = "noopener";
-    return a;
-  }
+ function render(){
+  var vis = projetos.filter(function(p){
+   return filtro === 'todos' || (filtro === 'aberto' ? aberto(p) : !aberto(p));
+  });
+  var topo = vis.filter(function(p){ return p.destaque; }).slice(0, 3);
+  var resto = vis.filter(function(p){ return topo.indexOf(p) === -1; });
 
-  function formatDate(iso) {
-    return new Date(iso).toLocaleDateString("pt-BR", { month: "short", year: "numeric" });
-  }
+  destaques.textContent = '';
+  destaques.hidden = topo.length === 0;
+  topo.forEach(function(p){
+   var c = el('article', 'card');
+   c.appendChild(meta(p));
+   c.appendChild(el('h2', 'disp', p.nome));
+   c.appendChild(el('p', null, p.descricao || ''));
+   c.appendChild(acao(p));
+   destaques.appendChild(c);
+  });
 
-  function render() {
-    const q = filter.value.trim().toLowerCase();
-    const visible = projetos.filter(p => {
-      if (!q) return true;
-      return [p.nome, p.descricao, p.linguagem, ...(p.topicos || [])]
-        .filter(Boolean)
-        .some(v => v.toLowerCase().includes(q));
-    });
+  lista.textContent = '';
+  if (!vis.length) lista.appendChild(el('div', 'estado', 'Nenhum projeto neste filtro.'));
+  resto.forEach(function(p){
+   var l = el('article', 'linha');
+   var a = el('div');
+   a.appendChild(el('h3', 'disp', p.nome));
+   a.appendChild(meta(p));
+   l.appendChild(a);
+   l.appendChild(el('p', null, p.descricao || ''));
+   l.appendChild(acao(p));
+   lista.appendChild(l);
+  });
+ }
 
-    list.replaceChildren();
+ Array.prototype.forEach.call(botoes, function(b){
+  b.addEventListener('click', function(){
+   filtro = b.getAttribute('data-filtro');
+   Array.prototype.forEach.call(botoes, function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+   render();
+  });
+ });
 
-    if (visible.length === 0) {
-      list.append(el("div", "state", q ? "Nenhum projeto encontrado para este filtro." : "Nenhum projeto por aqui ainda."));
-    }
-
-    for (const p of visible) {
-      const card = el("article", "repo");
-      card.append(el("h2", null, p.nome));
-      card.append(el("p", null, p.descricao || "Sem descrição no GitHub."));
-
-      const meta = el("div", "meta");
-      if (p.privado) meta.append(el("span", "tag private", "Código privado"));
-      if (p.linguagem) meta.append(el("span", "tag", p.linguagem));
-      if (p.estrelas > 0) meta.append(el("span", null, `★ ${p.estrelas}`));
-      meta.append(el("span", null, `Atualizado em ${formatDate(p.atualizado)}`));
-      card.append(meta);
-
-      const links = el("div", "links");
-      if (p.site) links.append(link(p.site, "Ver no ar ↗"));
-      if (p.codigo) links.append(link(p.codigo, "Código ↗"));
-      if (links.childElementCount) card.append(links);
-
-      list.append(card);
-    }
-
-    const total = projetos.length;
-    count.textContent = q
-      ? `${visible.length} de ${total} projetos`
-      : `${total} projetos`;
-  }
-
-  async function carregarDaApi() {
-    const response = await fetch(API_PROPRIA);
-    if (!response.ok) throw new Error(`API respondeu ${response.status}`);
-    const data = await response.json();
-    return data.projetos;
-  }
-
-  async function carregarDoGithub() {
-    const response = await fetch(API_GITHUB, { headers: { Accept: "application/vnd.github+json" } });
-    if (!response.ok) throw new Error(`GitHub respondeu ${response.status}`);
-    const data = await response.json();
-    return data
-      .filter(r => !r.fork && !r.private && r.name !== "site-matheus-siqueira")
-      .map(r => ({
-        nome: r.name,
-        descricao: r.description,
-        linguagem: r.language,
-        site: r.homepage || null,
-        codigo: r.html_url,
-        privado: false,
-        estrelas: r.stargazers_count,
-        atualizado: r.pushed_at || r.updated_at,
-        topicos: r.topics || [],
-      }))
-      .sort((a, b) => new Date(b.atualizado) - new Date(a.atualizado));
-  }
-
-  async function load() {
-    try {
-      try {
-        projetos = await carregarDaApi();
-      } catch {
-        projetos = await carregarDoGithub();
-      }
-      filter.disabled = false;
-      render();
-    } catch (err) {
-      count.textContent = "Não foi possível carregar os projetos.";
-      list.replaceChildren(el("div", "state", "Veja a lista diretamente no perfil do GitHub enquanto isso."));
-    }
-  }
-
-  filter.addEventListener("input", render);
-  load();
+ fetch('/api/projetos').then(function(r){
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+ }).then(function(d){
+  projetos = d.projetos || [];
+  render();
+ }).catch(function(){
+  lista.textContent = '';
+  var e = el('div', 'estado', 'Não deu para carregar os projetos agora. Tente de novo em instantes.');
+  lista.appendChild(e);
+ });
+})();
 </script>
 </body>
 </html>
