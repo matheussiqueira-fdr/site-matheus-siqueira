@@ -10,12 +10,24 @@
 //   não divulga o endereço da tela de login.
 // - O tópico "destaque" coloca o projeto no topo da página.
 // - Descrição no formato "Nome: texto" vira título e descrição do card.
+// - Tópicos "ciclo-<etapa>" e "produto-proprio" dizem em que etapa do ciclo da home o
+//   projeto entra; "jogo" põe o projeto no filtro de jogos.
 
 const CONTAS = ["matheussiqueira-fdr", "matheussiqueira-code"];
 const TOPICO = "portfolio";
 const DEMO = "demo-publica";
 const DESTAQUE = "destaque";
+const JOGO = "jogo";
 const OCULTOS = new Set(["site-matheus-siqueira"]);
+const ETAPAS = {
+  "ciclo-diagnostico": "1 · Diagnóstico",
+  "ciclo-projeto": "2 · Projeto",
+  "ciclo-captacao": "3 · Captação",
+  "ciclo-governanca": "4 · Governança",
+  "ciclo-execucao": "5 · Execução",
+  "ciclo-prestacao-de-contas": "6 · Prestação de contas",
+  "produto-proprio": "Produto próprio",
+};
 
 function separarNome(repo) {
   const texto = (repo.description || "").trim();
@@ -50,9 +62,11 @@ function resumo(repo) {
     codigo: repo.private ? null : repo.html_url,
     privado: repo.private,
     destaque: topicos.includes(DESTAQUE),
+    jogo: topicos.includes(JOGO),
+    etapa: ETAPAS[topicos.find((t) => ETAPAS[t])] || null,
     estrelas: repo.stargazers_count,
     atualizado: repo.pushed_at || repo.updated_at,
-    topicos: topicos.filter((t) => ![TOPICO, DEMO, DESTAQUE].includes(t)),
+    topicos: topicos.filter((t) => ![TOPICO, DEMO, DESTAQUE, JOGO].includes(t) && !ETAPAS[t]),
   };
 }
 
