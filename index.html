@@ -98,8 +98,9 @@ nav a.cta{background:var(--ouro);color:#121212;padding:0 14px;min-height:36px;di
 .num span{font-size:14px;line-height:1.45;color:var(--claro)}
 /* ciclo */
 .ciclo{display:flex;flex-wrap:wrap;gap:40px 56px;align-items:flex-start}
-.anel-box{flex:1 1 560px;display:flex;justify-content:center}
-.anel{position:relative;width:560px;height:560px}
+/* o círculo fica preso no meio da tela enquanto o painel (mais alto) rola ao lado */
+.anel-box{flex:0 0 500px;width:500px;height:500px;position:sticky;top:max(84px, calc(50vh - 250px));align-self:flex-start}
+.anel{position:relative;width:560px;height:560px;transform:scale(.8929);transform-origin:0 0}
 .aro{position:absolute;left:70px;top:70px;width:420px;height:420px;border:2px dashed var(--chalk);border-radius:50%}
 .centro{position:absolute;left:170px;top:205px;width:220px;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
 .centro b{font-family:'Big Shoulders',sans-serif;font-weight:700;font-size:26px;line-height:1;text-transform:uppercase;color:var(--ouro)}
@@ -122,6 +123,10 @@ nav a.cta{background:var(--ouro);color:#121212;padding:0 14px;min-height:36px;di
 .letra{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-family:'Big Shoulders',sans-serif;font-weight:700;font-size:22px;border:1px solid var(--chalk);color:#77766E}
 .letra.on{background:var(--ouro);border-color:var(--ouro);color:#121212}
 .odsm{min-width:40px;height:40px;padding:0 10px;display:flex;align-items:center;justify-content:center;font-family:'Big Shoulders',sans-serif;font-weight:700;font-size:20px;color:#fff}
+@media (max-width:1060px){
+ .anel-box{position:static;flex:1 1 100%;width:auto;height:auto;display:flex;justify-content:center}
+ .anel{transform:none}
+}
 @media (max-width:640px){
  .anel{width:100%;height:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
  .aro,.centro{display:none}
