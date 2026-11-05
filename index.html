@@ -16,6 +16,11 @@
 <meta property="og:image:alt" content="Retrato de Matheus Siqueira, sorrindo, de braços cruzados.">
 <meta name="twitter:card" content="summary">
 <link rel="preload" href="/fonts/big-shoulders-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="alternate" hreflang="pt-BR" href="https://matheussiqueira2.com.br/">
+<link rel="alternate" hreflang="en" href="https://matheussiqueira2.com.br/?lang=en">
+<link rel="alternate" hreflang="es" href="https://matheussiqueira2.com.br/?lang=es">
+<link rel="alternate" hreflang="zh-CN" href="https://matheussiqueira2.com.br/?lang=zh">
+<link rel="alternate" hreflang="x-default" href="https://matheussiqueira2.com.br/">
 <link rel="canonical" href="https://matheussiqueira2.com.br/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20fill='%23D5A83C'/%3E%3Ctext%20x='32'%20y='46'%20font-family='Arial%20Black,Arial,sans-serif'%20font-size='30'%20font-weight='900'%20text-anchor='middle'%20fill='%23121212'%3EMS%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#121212">
@@ -209,19 +214,48 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
  nav a{white-space:nowrap;letter-spacing:.08em}
 }
 @media (max-width:560px){.brand>span:not(.plate){display:none}.hero{padding-top:56px}.sec{padding:72px 0}.lido{grid-template-columns:96px minmax(0,1fr)}}
+
+/* utilitários (antes inline) */
+.pequeno{font-size:11px;letter-spacing:.16em}
+.provas{display:flex;flex-direction:column;gap:8px}
+#p-proj{color:var(--ouro)}
+.h3ods{font-size:36px}
+.lead-sm{font-size:16px;margin-top:14px}
+.shead .lead-sm{margin-top:0}
+.mb28{margin-bottom:28px}.mb36{margin-bottom:36px}.mb0{margin-bottom:0}
+.ouro{color:var(--ouro)}
+.ctxt{flex:1 1 420px}
+/* seletor de idioma */
+.langs{display:flex;gap:2px;margin-left:auto}
+.langs button{min-width:40px;min-height:36px;padding:0 8px;border:1px solid transparent;background:transparent;color:var(--cinza);font-family:'DM Mono','PingFang SC','Microsoft YaHei',monospace;font-size:11px;letter-spacing:.08em}
+.langs button:hover{color:var(--giz)}
+.langs button[aria-pressed="true"]{border-color:var(--ouro);color:var(--ouro)}
+.hrow nav{margin-left:8px}
+/* mandarim: as fontes do site não têm ideogramas */
+html[lang="zh-CN"] body{font-family:'Work Sans','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif}
+html[lang="zh-CN"] .disp{font-family:'Big Shoulders','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;letter-spacing:.02em;line-height:1.08}
+html[lang="zh-CN"] .disp.nome{line-height:.88}
+html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,html[lang="zh-CN"] .chip,html[lang="zh-CN"] .aba,html[lang="zh-CN"] .lat,html[lang="zh-CN"] .oi,html[lang="zh-CN"] .pcic,html[lang="zh-CN"] .pacao,html[lang="zh-CN"] .ptag,html[lang="zh-CN"] .no span,html[lang="zh-CN"] .etq{font-family:'DM Mono','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',monospace;letter-spacing:.06em}
+@media (max-width:760px){.langs{margin-left:0}.langs button{min-width:34px;padding:0 4px}.hrow nav{margin-left:0}}
 </style>
 </head>
 <body>
 <header>
  <div class="wrap hrow">
-  <a class="brand" href="#top" aria-label="Início"><span class="plate">MS</span><span>MATHEUS&nbsp;SIQUEIRA</span></a>
+  <a class="brand" href="#top" aria-label="Início" data-i18n-aria="nav.inicio"><span class="plate">MS</span><span>MATHEUS&nbsp;SIQUEIRA</span></a>
+  <div class="langs" role="group" aria-label="Idioma" data-i18n-aria="idioma">
+   <button type="button" data-lang="pt" lang="pt-BR" aria-pressed="true">PT</button>
+   <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+   <button type="button" data-lang="es" lang="es" aria-pressed="false">ES</button>
+   <button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">中文</button>
+  </div>
   <nav aria-label="Seções">
-   <a href="#ciclo">O QUE EU FAÇO</a>
-   <a href="#regua">ESG E ODS</a>
-   <a href="#trajetoria">TRAJETÓRIA</a>
-   <a href="#projetos">PROJETOS</a>
-   <a href="#artigos">ARTIGOS</a>
-   <a class="cta" href="#contato">CONTATO</a>
+   <a href="#ciclo" data-i18n="nav.ciclo">O QUE EU FAÇO</a>
+   <a href="#regua" data-i18n="nav.regua">ESG E ODS</a>
+   <a href="#trajetoria" data-i18n="nav.traj">TRAJETÓRIA</a>
+   <a href="#projetos" data-i18n="nav.proj">PROJETOS</a>
+   <a href="#artigos" data-i18n="nav.arts">ARTIGOS</a>
+   <a class="cta" href="#contato" data-i18n="nav.contato">CONTATO</a>
   </nav>
  </div>
 </header>
@@ -230,16 +264,16 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
 <section class="hero">
  <div class="wrap hgrid">
   <div class="txt">
-   <span class="oi">Oi, tudo bem? Eu sou o</span>
-   <h1 class="disp">Matheus<br>Siqueira</h1>
+   <span class="oi" data-i18n="hero.oi">Oi, tudo bem? Eu sou o</span>
+   <h1 class="disp nome">Matheus<br>Siqueira</h1>
    <div class="digita">
-    <span class="oi">e eu cuido de</span>
+    <span class="oi" data-i18n="hero.cuido">e eu cuido de</span>
     <p><span id="digitado">projetos com lei de incentivo</span><span class="cursor" aria-hidden="true">▍</span></p>
    </div>
-   <p class="lead">Trabalho onde o dinheiro das empresas encontra o terceiro setor: transformo <b>incentivo fiscal em projeto</b>, projeto em <b>resultado</b> e resultado em <b>prova</b>.</p>
+   <p class="lead" data-i18n-html="hero.lead">Trabalho onde o dinheiro das empresas encontra o terceiro setor: transformo <b>incentivo fiscal em projeto</b>, projeto em <b>resultado</b> e resultado em <b>prova</b>.</p>
    <div class="hcta">
-    <a class="chip solid" href="#ciclo">VER COMO EU TRABALHO ↓</a>
-    <a class="chip" href="mailto:contatolauromatheus@gmail.com">ME ENVIE UM E-MAIL</a>
+    <a class="chip solid" href="#ciclo" data-i18n="hero.cta1">VER COMO EU TRABALHO ↓</a>
+    <a class="chip" href="mailto:contatolauromatheus@gmail.com" data-i18n="hero.cta2">ME ENVIE UM E-MAIL</a>
    </div>
    <div class="social">
     <a href="https://www.linkedin.com/in/matheussiqueira2/" target="_blank" rel="me noopener">LINKEDIN ↗</a>
@@ -249,7 +283,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
   </div>
   <figure class="foto">
    <div class="moldura">
-    <img src="/img/foto-matheus.jpg" alt="Matheus Siqueira sorrindo no evento do programa Embaixadores Estudantis do Google." width="513" height="641">
+    <img src="/img/foto-matheus.jpg" alt="Matheus Siqueira sorrindo no evento do programa Embaixadores Estudantis do Google." data-i18n-alt="hero.alt" width="513" height="641">
     <span class="selo">GOOGLE STUDENT AMBASSADOR · 2026</span>
    </div>
   </figure>
@@ -259,10 +293,10 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
 <section aria-label="Números">
  <div class="wrap">
   <div class="nums">
-   <div class="num"><b>10+</b><span>projetos escritos via Lei de Incentivo ao Esporte e Lei Rouanet</span></div>
-   <div class="num"><b>R$ 20 mi+</b><span>em orçamento proposto nesses projetos</span></div>
-   <div class="num"><b>30 → 280+</b><span>adolescentes no E-Futebol de Rua, em 4 estados</span></div>
-   <div class="num"><b>47</b><span>projetos da Lei de Incentivo ao Esporte auditados em três CNPJs</span></div>
+   <div class="num"><b>10+</b><span data-i18n="num.1">projetos escritos via Lei de Incentivo ao Esporte e Lei Rouanet</span></div>
+   <div class="num"><b data-i18n="num.2v">R$ 20 mi+</b><span data-i18n="num.2">em orçamento proposto nesses projetos</span></div>
+   <div class="num"><b>30 → 280+</b><span data-i18n="num.3">adolescentes no E-Futebol de Rua, em 4 estados</span></div>
+   <div class="num"><b>47</b><span data-i18n="num.4">projetos da Lei de Incentivo ao Esporte auditados em três CNPJs</span></div>
   </div>
  </div>
 </section>
@@ -270,28 +304,28 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
 <section class="sec" id="ciclo">
  <div class="wrap">
   <div class="shead">
-   <span class="eyebrow">O QUE EU FAÇO</span>
-   <h2 class="disp h2">Do imposto ao impacto<span class="g">.</span></h2>
-   <p class="lead">Um projeto social financiado por lei de incentivo passa por seis etapas. Na maioria das organizações, cada uma fica com uma pessoa diferente, e o projeto se perde entre elas. Eu trabalho nas seis, e é isso que liga o que eu sei fazer. Clique em cada etapa.</p>
+   <span class="eyebrow" data-i18n="ciclo.eyebrow">O QUE EU FAÇO</span>
+   <h2 class="disp h2" data-i18n-html="ciclo.h2">Do imposto ao impacto<span class="g">.</span></h2>
+   <p class="lead" data-i18n="ciclo.lead">Um projeto social financiado por lei de incentivo passa por seis etapas. Na maioria das organizações, cada uma fica com uma pessoa diferente, e o projeto se perde entre elas. Eu trabalho nas seis, e é isso que liga o que eu sei fazer. Clique em cada etapa.</p>
   </div>
   <div class="ciclo">
    <div class="anel-box">
-    <div class="anel" role="tablist" aria-label="Etapas do ciclo" id="anel">
+    <div class="anel" role="tablist" aria-label="Etapas do ciclo" data-i18n-aria="ciclo.aria" id="anel">
      <span class="aro" aria-hidden="true"></span>
      <div class="centro" aria-hidden="true"><span class="rot" id="centro-num">ETAPA 1 DE 6</span><b id="centro-frase"></b></div>
     </div>
    </div>
    <div class="painel" role="tabpanel" id="painel" aria-live="polite">
     <div class="bloco"><span class="eyebrow" id="p-rot"></span><h3 class="disp" id="p-titulo"></h3></div>
-    <div class="bloco"><span class="rot">ONDE O TERCEIRO SETOR TRAVA</span><p id="p-problema"></p></div>
-    <div class="bloco"><span class="rot">O QUE EU FAÇO</span><p class="forte" id="p-faco"></p></div>
-    <div class="bloco"><span class="rot">COMPETÊNCIAS NESTA ETAPA</span><div class="tags" id="p-comps"></div></div>
-    <div class="prova"><span class="eyebrow" style="font-size:11px;letter-spacing:.16em">A PROVA</span><div id="p-provas" style="display:flex;flex-direction:column;gap:8px"></div></div>
+    <div class="bloco"><span class="rot" data-i18n="rot.trava">ONDE O TERCEIRO SETOR TRAVA</span><p id="p-problema"></p></div>
+    <div class="bloco"><span class="rot" data-i18n="rot.faco">O QUE EU FAÇO</span><p class="forte" id="p-faco"></p></div>
+    <div class="bloco"><span class="rot" data-i18n="rot.comps">COMPETÊNCIAS NESTA ETAPA</span><div class="tags" id="p-comps"></div></div>
+    <div class="prova"><span class="eyebrow pequeno" data-i18n="rot.prova">A PROVA</span><div class="provas" id="p-provas"></div></div>
     <div class="marcas">
-     <div class="bloco"><span class="rot">LETRA DO ESG</span><div class="letras" id="p-esg"></div></div>
-     <div class="bloco"><span class="rot">ODS LIGADOS</span><div class="odsl" id="p-ods"></div></div>
+     <div class="bloco"><span class="rot" data-i18n="rot.esg">LETRA DO ESG</span><div class="letras" id="p-esg"></div></div>
+     <div class="bloco"><span class="rot" data-i18n="rot.ods">ODS LIGADOS</span><div class="odsl" id="p-ods"></div></div>
     </div>
-    <div class="bloco" id="p-proj-box"><span class="rot">SISTEMAS QUE CONSTRUÍ PARA ESTA ETAPA</span><p class="g" id="p-proj" style="color:var(--ouro)"></p></div>
+    <div class="bloco" id="p-proj-box"><span class="rot" data-i18n="rot.sistemas">SISTEMAS QUE CONSTRUÍ PARA ESTA ETAPA</span><p class="g" id="p-proj"></p></div>
    </div>
   </div>
  </div>
@@ -300,32 +334,32 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
 <section class="sec faixa" id="regua">
  <div class="wrap">
   <div class="shead">
-   <span class="eyebrow">A RÉGUA</span>
-   <h2 class="disp h2">ESG sem maquiagem<span class="g">.</span></h2>
-   <p class="lead">Quem diz que faz as três letras do ESG igualmente bem geralmente não faz nenhuma. O meu trabalho está no S e no G. O E aparece onde ele protege o projeto.</p>
+   <span class="eyebrow" data-i18n="regua.eyebrow">A RÉGUA</span>
+   <h2 class="disp h2" data-i18n-html="regua.h2">ESG sem maquiagem<span class="g">.</span></h2>
+   <p class="lead" data-i18n="regua.lead">Quem diz que faz as três letras do ESG igualmente bem geralmente não faz nenhuma. O meu trabalho está no S e no G. O E aparece onde ele protege o projeto.</p>
   </div>
   <div class="esg">
-   <div class="carta e"><span class="L">E</span><span class="rot">AMBIENTAL · ONDE ENTRA</span><p>Na due diligence de patrocinadores: risco ambiental de uma empresa é risco de reputação para o projeto social que ela financia.</p></div>
-   <div class="carta on"><span class="L">S</span><span class="rot">SOCIAL · MEU FOCO</span><p>Projetos que chegam a crianças e adolescentes, com metodologia, metas e indicadores que o patrocinador confere. Do E-Futebol de Rua ao Legado Feminino 2027.</p></div>
-   <div class="carta on"><span class="L">G</span><span class="rot">GOVERNANÇA · MEU FOCO</span><p>Compliance e due diligence contra sportswashing, salvaguarda, LGPD, estatuto de federação e prestação de contas ao Ministério do Esporte.</p></div>
+   <div class="carta e"><span class="L">E</span><span class="rot" data-i18n="esg.e.rot">AMBIENTAL · ONDE ENTRA</span><p data-i18n="esg.e.p">Na due diligence de patrocinadores: risco ambiental de uma empresa é risco de reputação para o projeto social que ela financia.</p></div>
+   <div class="carta on"><span class="L">S</span><span class="rot" data-i18n="esg.s.rot">SOCIAL · MEU FOCO</span><p data-i18n="esg.s.p">Projetos que chegam a crianças e adolescentes, com metodologia, metas e indicadores que o patrocinador confere. Do E-Futebol de Rua ao Legado Feminino 2027.</p></div>
+   <div class="carta on"><span class="L">G</span><span class="rot" data-i18n="esg.g.rot">GOVERNANÇA · MEU FOCO</span><p data-i18n="esg.g.p">Compliance e due diligence contra sportswashing, salvaguarda, LGPD, estatuto de federação e prestação de contas ao Ministério do Esporte.</p></div>
   </div>
-  <h3 class="disp" style="font-size:36px">Os ODS em que meu trabalho encosta</h3>
-  <p class="lead" style="margin-top:14px;font-size:16px">Os Objetivos de Desenvolvimento Sustentável da ONU são a régua que empresas e investidores já usam. Ligo cada projeto a eles para que o patrocinador saiba em que meta o dinheiro dele trabalhou.</p>
+  <h3 class="disp h3ods" data-i18n="ods.h3">Os ODS em que meu trabalho encosta</h3>
+  <p class="lead lead-sm" data-i18n="ods.lead">Os Objetivos de Desenvolvimento Sustentável da ONU são a régua que empresas e investidores já usam. Ligo cada projeto a eles para que o patrocinador saiba em que meta o dinheiro dele trabalhou.</p>
   <div class="odsg" id="ods-grade"></div>
  </div>
 </section>
 
 <section class="sec borda" id="sobre">
  <div class="wrap">
-  <h2 class="disp h2" style="margin-bottom:28px">Sobre mim<span class="g">.</span></h2>
+  <h2 class="disp h2 mb28" data-i18n-html="sobre.h2">Sobre mim<span class="g">.</span></h2>
   <div class="sobre-abas" role="tablist" aria-label="Sobre mim">
-   <button class="lat" role="tab" aria-selected="true" aria-controls="sobre-resumo" data-sobre="resumo">RESUMO</button>
-   <button class="lat" role="tab" aria-selected="false" aria-controls="sobre-formacao" data-sobre="formacao">FORMAÇÃO E CERTIFICADOS</button>
+   <button class="lat" type="button" role="tab" aria-selected="true" aria-controls="sobre-resumo" data-sobre="resumo" data-i18n="sobre.tab1">RESUMO</button>
+   <button class="lat" type="button" role="tab" aria-selected="false" aria-controls="sobre-formacao" data-sobre="formacao" data-i18n="sobre.tab2">FORMAÇÃO E CERTIFICADOS</button>
   </div>
   <div id="sobre-resumo" role="tabpanel" class="resumo">
-   <p>Trabalho há quase 7 anos com projetos sociais no esporte, hoje como <b>Analista Sênior de Projetos no Instituto Futebol de Rua</b>, ONG criada em 2006 em Heliópolis (SP), com sede em Curitiba e cerca de 150 núcleos.</p>
-   <p>Meu foco é o S e o G do ESG: escrevo projetos de impacto, organizo a prestação de contas, monto políticas de compliance e salvaguarda e transformo resultados em indicadores que um patrocinador consegue conferir.</p>
-   <p>Também sou Diretor de Operações e Governança da Federação Paranaense de eSports, e desenvolvo sistemas e automações para organizações sociais, porque processo manual é o primeiro lugar onde o dinheiro do terceiro setor vaza.</p>
+   <p data-i18n-html="sobre.p1">Trabalho há quase 7 anos com projetos sociais no esporte, hoje como <b>Analista Sênior de Projetos no Instituto Futebol de Rua</b>, ONG criada em 2006 em Heliópolis (SP), com sede em Curitiba e cerca de 150 núcleos.</p>
+   <p data-i18n="sobre.p2">Meu foco é o S e o G do ESG: escrevo projetos de impacto, organizo a prestação de contas, monto políticas de compliance e salvaguarda e transformo resultados em indicadores que um patrocinador consegue conferir.</p>
+   <p data-i18n="sobre.p3">Também sou Diretor de Operações e Governança da Federação Paranaense de eSports, e desenvolvo sistemas e automações para organizações sociais, porque processo manual é o primeiro lugar onde o dinheiro do terceiro setor vaza.</p>
   </div>
   <div id="sobre-formacao" role="tabpanel" class="form" hidden></div>
  </div>
@@ -333,9 +367,9 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
 
 <section class="sec faixa" id="trajetoria">
  <div class="wrap">
-  <h2 class="disp h2" style="margin-bottom:36px">Minha trajetória<span class="g">.</span></h2>
+  <h2 class="disp h2 mb36" data-i18n-html="traj.h2">Minha trajetória<span class="g">.</span></h2>
   <div class="traj">
-   <div class="lista" role="tablist" aria-label="Organizações" id="org-abas"></div>
+   <div class="lista" role="tablist" aria-label="Organizações" data-i18n-aria="traj.aria" id="org-abas"></div>
    <div class="det" role="tabpanel" aria-live="polite">
     <h3 class="disp" id="o-org"></h3>
     <div class="cargo" id="o-cargo"></div>
@@ -349,50 +383,51 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
 <section class="sec borda" id="projetos">
  <div class="wrap">
   <div class="phead">
-   <div class="shead" style="margin-bottom:0">
-    <h2 class="disp h2">Meus projetos<span class="g">.</span></h2>
-    <p class="lead" style="font-size:16px">Cada sistema nasceu de uma etapa do ciclo que travava. A lista vem do meu GitHub a cada visita.</p>
+   <div class="shead mb0">
+    <h2 class="disp h2" data-i18n-html="proj.h2">Meus projetos<span class="g">.</span></h2>
+    <p class="lead lead-sm" data-i18n="proj.lead">Cada sistema nasceu de uma etapa do ciclo que travava. A lista vem do meu GitHub a cada visita.</p>
    </div>
-   <a class="pacao" href="/portfolio-github.html" style="color:var(--ouro)">VER TODOS OS PROJETOS →</a>
+   <a class="pacao ouro" href="/portfolio-github.html" data-i18n="proj.todos">VER TODOS OS PROJETOS →</a>
   </div>
   <div class="abas" role="tablist" aria-label="Tipos de projeto" id="cats">
-   <button class="aba" role="tab" aria-selected="true" data-cat="todos">TODOS</button>
-   <button class="aba" role="tab" aria-selected="false" data-cat="jogos">JOGOS</button>
-   <button class="aba" role="tab" aria-selected="false" data-cat="abertos">ABERTOS AO PÚBLICO</button>
-   <button class="aba" role="tab" aria-selected="false" data-cat="internos">SISTEMAS INTERNOS</button>
+   <button class="aba" type="button" role="tab" aria-selected="true" data-cat="todos" data-i18n="cat.todos">TODOS</button>
+   <button class="aba" type="button" role="tab" aria-selected="false" data-cat="jogos" data-i18n="cat.jogos">JOGOS</button>
+   <button class="aba" type="button" role="tab" aria-selected="false" data-cat="abertos" data-i18n="cat.abertos">ABERTOS AO PÚBLICO</button>
+   <button class="aba" type="button" role="tab" aria-selected="false" data-cat="internos" data-i18n="cat.internos">SISTEMAS INTERNOS</button>
   </div>
-  <div class="grade" id="proj-grade" aria-live="polite"><div class="estado">Carregando projetos do GitHub…</div></div>
+  <div class="grade" id="proj-grade" aria-live="polite"><div class="estado" data-i18n="proj.carregando">Carregando projetos do GitHub…</div></div>
  </div>
 </section>
 
 <section class="sec faixa" id="artigos">
  <div class="wrap">
   <div class="shead">
-   <span class="eyebrow">O QUE EU ESCREVO</span>
-   <h2 class="disp h2">Dado sem fonte não publica<span class="g">.</span></h2>
-   <p class="lead" style="font-size:16px">Artigos e posts sobre esporte, terceiro setor, leis de incentivo e ESG. Se eu não consigo mostrar de onde veio um número, ele não entra no texto.</p>
+   <span class="eyebrow" data-i18n="arts.eyebrow">O QUE EU ESCREVO</span>
+   <h2 class="disp h2" data-i18n-html="arts.h2">Dado sem fonte não publica<span class="g">.</span></h2>
+   <p class="lead lead-sm" data-i18n="arts.lead">Artigos e posts sobre esporte, terceiro setor, leis de incentivo e ESG. Se eu não consigo mostrar de onde veio um número, ele não entra no texto.</p>
+   <p class="rot" id="arts-idioma" data-i18n="arts.idioma" hidden></p>
   </div>
   <!-- Cards gerados a partir de artigos.json; o card abaixo é o fallback se o carregamento falhar. -->
   <div class="arts" id="arts">
-   <article class="acard"><div class="abody"><span class="eyebrow" style="font-size:11px">ARTIGO · P4 · JUL 2026</span><h3 class="disp">A Noruega não venceu o Brasil nas oitavas. Venceu em 2013.</h3><p>Seis Copas seguidas eliminados por europeus e a pior Eliminatória da nossa história. O que a pedagogia da rua e o futebol social têm a ver com o caminho de volta.</p><a class="chip solid" href="https://www.linkedin.com/in/matheussiqueira2/recent-activity/all/" target="_blank" rel="noopener">LER NO LINKEDIN →</a></div></article>
+   <article class="acard"><div class="abody"><span class="eyebrow pequeno">ARTIGO · P4 · JUL 2026</span><h3 class="disp">A Noruega não venceu o Brasil nas oitavas. Venceu em 2013.</h3><p>Seis Copas seguidas eliminados por europeus e a pior Eliminatória da nossa história. O que a pedagogia da rua e o futebol social têm a ver com o caminho de volta.</p><a class="chip solid" href="https://www.linkedin.com/in/matheussiqueira2/recent-activity/all/" target="_blank" rel="noopener">LER NO LINKEDIN →</a></div></article>
   </div>
   <div class="lidos">
-   <span class="rot">MAIS LIDOS NO LINKEDIN · NOV/2026</span>
-   <div class="lido"><b>11.922</b><span><strong>A Noruega não venceu o Brasil nas oitavas</strong><em>impressões e 25 comentários no post do artigo</em></span></div>
-   <div class="lido"><b>11.722</b><span><strong>Michael Olise e o que o feed apagado diz sobre gestão de pessoas</strong><em>impressões</em></span></div>
-   <div class="lido"><b>4.453</b><span><strong>O Marco Legal dos Games e o que muda para projetos incentivados</strong><em>impressões e 85 reações</em></span></div>
+   <span class="rot" data-i18n="arts.lidos">MAIS LIDOS NO LINKEDIN · NOV/2026</span>
+   <div class="lido"><b>11.922</b><span><strong data-i18n="lido.1">A Noruega não venceu o Brasil nas oitavas</strong><em data-i18n="lido.1d">impressões e 25 comentários no post do artigo</em></span></div>
+   <div class="lido"><b>11.722</b><span><strong data-i18n="lido.2">Michael Olise e o que o feed apagado diz sobre gestão de pessoas</strong><em data-i18n="lido.2d">impressões</em></span></div>
+   <div class="lido"><b>4.453</b><span><strong data-i18n="lido.3">O Marco Legal dos Games e o que muda para projetos incentivados</strong><em data-i18n="lido.3d">impressões e 85 reações</em></span></div>
   </div>
  </div>
 </section>
 
 <section class="contato" id="contato">
  <div class="wrap crow">
-  <div style="flex:1 1 420px">
-   <h2 class="disp h2">Vamos conversar.</h2>
-   <p>Projeto com lei de incentivo, governança, medição de impacto ou uma vaga: me chama.</p>
+  <div class="ctxt">
+   <h2 class="disp h2" data-i18n="contato.h2">Vamos conversar.</h2>
+   <p data-i18n="contato.p">Projeto com lei de incentivo, governança, medição de impacto ou uma vaga: me chama.</p>
   </div>
   <div class="hcta">
-   <a class="chip solid" href="mailto:contatolauromatheus@gmail.com">E-MAIL →</a>
+   <a class="chip solid" href="mailto:contatolauromatheus@gmail.com" data-i18n="contato.email">E-MAIL →</a>
    <a class="chip" href="https://www.linkedin.com/in/matheussiqueira2/" target="_blank" rel="noopener">LINKEDIN</a>
    <a class="chip" href="https://www.instagram.com/matheussiqueira2_/" target="_blank" rel="noopener">INSTAGRAM</a>
   </div>
@@ -407,141 +442,99 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
  </div>
 </footer>
 
-<a class="totop" href="#top" aria-label="Voltar ao topo"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" stroke="currentColor" stroke-width="2"/></svg></a>
+<a class="totop" href="#top" aria-label="Voltar ao topo" data-i18n-aria="topo"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" stroke="currentColor" stroke-width="2"/></svg></a>
 
+<script src="/i18n.js"></script>
 <script>
 (function(){
+ var I = window.I18N;
+ var LANGS = { pt: 'pt-BR', en: 'en', es: 'es', zh: 'zh-CN' };
+ var lang = 'pt';
+ function D(){ return I[lang]; }
+ function T(k){ var v = D().t[k]; return v == null ? I.pt.t[k] : v; }
  function el(tag, cls, texto){ var n = document.createElement(tag); if (cls) n.className = cls; if (texto != null) n.textContent = texto; return n; }
  function linkOk(u){ return typeof u === 'string' && /^https?:\/\//i.test(u); }
+ function preenche(id, itens, fn){ var box = document.getElementById(id); box.textContent = ''; itens.forEach(function(x){ box.appendChild(fn(x)); }); }
  var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+ /* Partes que não mudam com o idioma */
+ var ODS_COR = { 3: '#3F8A2E', 4: '#C5192D', 5: '#D62F14', 10: '#C4105A', 16: '#00689D', 17: '#19486A' };
+ var ETAPA_FIXO = [
+  { esg: 'SG', ods: [16, 17] }, { esg: 'S', ods: [3, 4, 5, 10] }, { esg: 'SG', ods: [17] },
+  { esg: 'G', ods: [16] }, { esg: 'S', ods: [4, 10] }, { esg: 'G', ods: [16, 17] }
+ ];
+ var POS = [[216, 6], [398, 111], [398, 321], [216, 426], [34, 321], [34, 111]];
+
  /* === Máquina de escrever === */
- var FRASES = ['projetos com lei de incentivo', 'governança no terceiro setor', 'compliance e salvaguarda', 'impacto ligado aos ODS', 'sistemas para organizações sociais', 'jogos que viram diagnóstico'];
  var alvo = document.getElementById('digitado');
+ var fi = 0, fn = 0, dir = 1, pausa = 20;
+ function reiniciaDigitacao(){ fi = 0; fn = 0; dir = 1; pausa = 6; alvo.textContent = calmo ? D().frases[0] : ''; }
  if (!calmo) {
-  var i = 0, n = 0, dir = 1, pausa = 20;
   setInterval(function(){
    if (pausa > 0) { pausa--; return; }
-   var f = FRASES[i];
-   if (dir === 1) { if (n < f.length) n++; else { dir = -1; pausa = 26; } }
-   else { if (n > 0) n = Math.max(0, n - 2); else { dir = 1; i = (i + 1) % FRASES.length; pausa = 5; } }
-   alvo.textContent = f.slice(0, n);
+   var f = D().frases[fi];
+   if (dir === 1) { if (fn < f.length) fn++; else { dir = -1; pausa = 26; } }
+   else { if (fn > 0) fn = Math.max(0, fn - 2); else { dir = 1; fi = (fi + 1) % D().frases.length; pausa = 5; } }
+   alvo.textContent = f.slice(0, fn);
   }, 70);
  }
 
  /* === ODS === */
- var ODS = {
-  3: { nome: 'Saúde e bem-estar', cor: '#3F8A2E', onde: 'Esporte como saúde para crianças e adolescentes atendidos nos núcleos.' },
-  4: { nome: 'Educação de qualidade', cor: '#C5192D', onde: 'Metodologia que une esporte e Pedagogia da Rua; eSports como inclusão digital.' },
-  5: { nome: 'Igualdade de gênero', cor: '#D62F14', onde: 'Legado Feminino FdR 2027, ligado à Copa do Mundo Feminina FIFA 2027.' },
-  10: { nome: 'Redução das desigualdades', cor: '#C4105A', onde: 'Projetos para crianças e adolescentes em situação de vulnerabilidade.' },
-  16: { nome: 'Paz, justiça e instituições eficazes', cor: '#00689D', onde: 'Compliance, salvaguarda e prestação de contas: instituições que se sustentam.' },
-  17: { nome: 'Parcerias e meios de implementação', cor: '#19486A', onde: 'Ponte entre empresas, governo e organizações sociais via incentivo fiscal.' }
- };
- var grade = document.getElementById('ods-grade');
- [3, 4, 5, 10, 16, 17].forEach(function(k){
-  var o = ODS[k], c = el('div', 'odsc');
-  c.style.background = o.cor;
-  c.appendChild(el('b', null, String(k)));
-  c.appendChild(el('span', null, o.nome));
-  c.appendChild(el('p', null, o.onde));
-  grade.appendChild(c);
- });
+ function renderOds(){
+  preenche('ods-grade', [3, 4, 5, 10, 16, 17], function(k){
+   var o = D().ods[k], c = el('div', 'odsc');
+   c.style.background = ODS_COR[k];
+   c.appendChild(el('b', null, String(k)));
+   c.appendChild(el('span', null, o[0]));
+   c.appendChild(el('p', null, o[1]));
+   return c;
+  });
+ }
 
  /* === Ciclo do imposto ao impacto === */
- var POS = [[216, 6], [398, 111], [398, 321], [216, 426], [34, 321], [34, 111]];
- var ETAPAS = [
-  { curto: 'DIAGNÓSTICO', titulo: 'Entender antes de prometer', frase: 'Saber onde a organização está fraca',
-    problema: 'Muita organização promete impacto sem saber onde está fraca: gestão, captação ou governança.',
-    faco: 'Crio autodiagnósticos e uso a Teoria da Mudança para ligar cada atividade a um resultado que dá para medir, e cada resultado a um ODS.',
-    comps: ['Teoria da Mudança', 'Desenvolvimento Institucional', 'Desenho de indicadores', 'ODS'],
-    provas: ['Raio-X do FdR: autodiagnóstico de Desenvolvimento Institucional em formato de jogo, com súmula final.', 'Proposta de formação para gestores a partir do diagnóstico.'],
-    esg: 'SG', ods: [16, 17], proj: 'Raio-X do FdR' },
-  { curto: 'PROJETO', titulo: 'Transformar causa em projeto aprovável', frase: 'Causa vira projeto técnico',
-    problema: 'Uma boa causa não vira dinheiro sozinha: a lei de incentivo exige projeto técnico, orçamento e metas que o governo aprova.',
-    faco: 'Escrevo projetos para a Lei de Incentivo ao Esporte e a Lei Rouanet, com metodologia que une esporte, Pedagogia da Rua e os parâmetros do FIFA Football for Hope.',
-    comps: ['Lei de Incentivo ao Esporte', 'Lei Rouanet', 'Lei Geral do Esporte', 'Orçamento', 'Metodologia esportiva e educacional'],
-    provas: ['Mais de 10 projetos escritos, com mais de R$ 20 milhões em orçamento proposto.', 'Portfólio Legado Feminino FdR 2027, com projetos aprovados na LIE (CT Mulheres, Rei e Rainha da Rua).'],
-    esg: 'S', ods: [3, 4, 5, 10], proj: '' },
-  { curto: 'CAPTAÇÃO', titulo: 'Fazer a empresa enxergar o S do ESG dela', frase: 'Empresa vira patrocinadora',
-    problema: 'Projeto aprovado sem patrocinador não sai do papel. E a empresa quer saber o que o dinheiro dela vai provar.',
-    faco: 'Com a equipe de captação, faço reuniões com empresas, monto propostas e materiais de venda e acompanho os patrocinadores depois da assinatura.',
-    comps: ['Investimento social privado', 'Incentivo fiscal', 'Propostas e materiais de venda', 'Relacionamento com patrocinadores'],
-    provas: ['Trabalho de captação junto com a equipe do Instituto Futebol de Rua.', 'Ferramentas próprias para carteira, funil e prazos fiscais da captação.'],
-    esg: 'SG', ods: [17], proj: 'Vizu · Portal do Captador · Relações Institucionais · Site Na Rua' },
-  { curto: 'GOVERNANÇA', titulo: 'Proteger quem financia e quem é atendido', frase: 'Regras que protegem todo mundo',
-    problema: 'O esporte social pode ser usado para limpar a imagem de uma marca (sportswashing). E quem atende criança precisa de salvaguarda de verdade, não de papel.',
-    faco: 'Escrevi a proposta do Manual de Compliance e Due Diligence do FdR, organizo a salvaguarda (política, fluxo, guia rápido e formação) e conduzo a entrada na Comunidade Common Goal. Na Federação Paranaense de eSports, cuido da governança e das reformas do estatuto.',
-    comps: ['Compliance', 'Due diligence', 'Salvaguarda', 'LGPD', 'Governança e estatuto'],
-    provas: ['Certificado em Política de Salvaguarda (Instituto Futebol de Rua, 2026).', 'LGPD e Programa Esporte Seguro (Instituto Olímpico Brasileiro / COB, 2025).'],
-    esg: 'G', ods: [16], proj: 'Ecossistema de Gestão · Acesso Facial' },
-  { curto: 'EXECUÇÃO', titulo: 'Escalar sem perder o controle', frase: 'Projeto cresce com processo',
-    problema: 'Equipes enxutas carregam muita burocracia, e o projeto cresce mais rápido do que os processos.',
-    faco: 'Co-liderei a expansão do E-Futebol de Rua e construo sistemas e automações que tiram trabalho repetitivo da equipe.',
-    comps: ['Gestão de projetos', 'Automação com Make e Zapier', 'IA generativa', 'Power BI', 'Sistemas web'],
-    provas: ['E-Futebol de Rua: de 30 para mais de 280 adolescentes em 4 estados (out/2022 a dez/2025).', 'Desenho técnico de projetos em rede: Rede CT, E-Futebol de Rua (Anos II e III) e Futebol de Rua pela Educação.'],
-    esg: 'S', ods: [4, 10], proj: 'Pulso OSC' },
-  { curto: 'PRESTAÇÃO DE CONTAS', titulo: 'Provar o que foi feito', frase: 'Resultado vira prova',
-    problema: 'Prestação de contas mal feita trava o próximo projeto, e relatório sem dado não convence patrocinador nenhum.',
-    faco: 'Faço a prestação de contas, respondo a diligências, ATOs e RCOs do Ministério do Esporte e transformo resultado em indicador que o patrocinador confere. E a prova fecha o ciclo: ela é o que renova o patrocínio.',
-    comps: ['Prestação de contas', 'ATOs e RCOs', 'Indicadores auditáveis', 'Auditoria de portfólio', 'SROI (primeiro caso em preparação)'],
-    provas: ['Auditei 47 projetos da Lei de Incentivo ao Esporte em três CNPJs.', 'Estudei ESG na University of Pennsylvania (2025).'],
-    esg: 'G', ods: [16, 17], proj: 'Conformes' }
- ];
  var anel = document.getElementById('anel');
- var nos = ETAPAS.map(function(e, k){
+ var etapaAtual = 0;
+ var nos = POS.map(function(p, k){
   var b = el('button', 'no');
   b.type = 'button';
   b.setAttribute('role', 'tab');
   b.setAttribute('aria-controls', 'painel');
-  b.style.left = POS[k][0] + 'px';
-  b.style.top = POS[k][1] + 'px';
+  b.style.left = p[0] + 'px';
+  b.style.top = p[1] + 'px';
   b.appendChild(el('b', null, String(k + 1)));
-  b.appendChild(el('span', null, e.curto));
+  b.appendChild(el('span'));
   b.addEventListener('click', function(){ mostraEtapa(k); });
   anel.appendChild(b);
   return b;
  });
- function preenche(id, itens, fn){ var box = document.getElementById(id); box.textContent = ''; itens.forEach(function(x){ box.appendChild(fn(x)); }); }
  function mostraEtapa(k){
-  var e = ETAPAS[k];
-  nos.forEach(function(b, j){ b.setAttribute('aria-selected', String(j === k)); });
-  document.getElementById('centro-num').textContent = 'ETAPA ' + (k + 1) + ' DE 6';
+  etapaAtual = k;
+  var e = D().etapas[k], fixo = ETAPA_FIXO[k];
+  nos.forEach(function(b, j){ b.setAttribute('aria-selected', String(j === k)); b.lastChild.textContent = D().etapas[j].curto; });
+  document.getElementById('centro-num').textContent = T('ciclo.etapaDe').replace('{n}', k + 1);
   document.getElementById('centro-frase').textContent = e.frase;
-  document.getElementById('p-rot').textContent = 'ETAPA ' + (k + 1) + ' · ' + e.curto;
+  document.getElementById('p-rot').textContent = T('ciclo.etapa') + ' ' + (k + 1) + ' · ' + e.curto;
   document.getElementById('p-titulo').textContent = e.titulo;
   document.getElementById('p-problema').textContent = e.problema;
   document.getElementById('p-faco').textContent = e.faco;
   preenche('p-comps', e.comps, function(c){ return el('span', 'tag', c); });
   preenche('p-provas', e.provas, function(p){ return el('p', null, p); });
-  preenche('p-esg', ['E', 'S', 'G'], function(l){ return el('span', 'letra' + (e.esg.indexOf(l) >= 0 ? ' on' : ''), l); });
-  preenche('p-ods', e.ods, function(n){ var s = el('span', 'odsm', 'ODS ' + n); s.style.background = ODS[n].cor; s.title = ODS[n].nome; return s; });
+  preenche('p-esg', ['E', 'S', 'G'], function(l){ return el('span', 'letra' + (fixo.esg.indexOf(l) >= 0 ? ' on' : ''), l); });
+  preenche('p-ods', fixo.ods, function(n){ var s = el('span', 'odsm', T('ods.sigla') + ' ' + n); s.style.background = ODS_COR[n]; s.title = D().ods[n][0]; return s; });
   document.getElementById('p-proj-box').hidden = !e.proj;
   document.getElementById('p-proj').textContent = e.proj;
  }
- mostraEtapa(0);
 
  /* === Sobre mim === */
- var FORMACAO = [
-  ['2025', 'ESG Risks and Opportunities', 'University of Pennsylvania'],
-  ['2024', 'Estratégia Corporativa', 'UCL School of Management'],
-  ['2025', 'Inteligência Artificial e Cultura', 'UFRB'],
-  ['2025', 'Análise e Parecer de Projetos Culturais', 'Instituto Federal de Goiás (IFG)'],
-  ['2025', 'Gestão de Projetos Culturais', 'Instituto Federal de São Paulo (IFSP)'],
-  ['2023', 'Gestão Estratégica com Foco na Administração Pública', 'Instituto Legislativo Brasileiro (ILB)'],
-  ['2025', 'LGPD e Programa Esporte Seguro', 'Instituto Olímpico Brasileiro / COB'],
-  ['2025', 'Lei de Incentivo ao Esporte, Módulos I e II', 'Fundação Vale / Trilha'],
-  ['2026', 'Política de Salvaguarda', 'Instituto Futebol de Rua'],
-  ['2026', 'Google Student Ambassador', 'Google'],
-  ['2021', 'Bacharelado em Educação Física', 'Universidade Positivo']
- ];
- preenche('sobre-formacao', FORMACAO, function(f){
-  var d = el('div');
-  d.appendChild(el('span', 'ano', f[0]));
-  var t = el('span'); t.appendChild(el('strong', null, f[1])); t.appendChild(el('em', null, f[2]));
-  d.appendChild(t);
-  return d;
- });
+ function renderFormacao(){
+  preenche('sobre-formacao', D().formacao, function(f){
+   var d = el('div');
+   d.appendChild(el('span', 'ano', f[0]));
+   var t = el('span'); t.appendChild(el('strong', null, f[1])); t.appendChild(el('em', null, f[2]));
+   d.appendChild(t);
+   return d;
+  });
+ }
  var sobreBts = document.querySelectorAll('[data-sobre]');
  Array.prototype.forEach.call(sobreBts, function(b){
   b.addEventListener('click', function(){
@@ -553,42 +546,24 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
  });
 
  /* === Trajetória === */
- var ORGS = [
-  { curto: 'FUTEBOL DE RUA', periodo: 'fev/2020 até hoje', org: 'Instituto Futebol de Rua', cargo: 'Analista Sênior de Projetos & Inovação Institucional', meta: 'CURITIBA, PR · ATUAÇÃO NACIONAL',
-    itens: [
-     ['Escrevi mais de 10 projetos via Lei de Incentivo ao Esporte e Lei Rouanet, com mais de R$ 20 milhões em orçamento.', '2 · PROJETO'],
-     ['Com a equipe de captação, faço reuniões com empresas, monto propostas e acompanho os patrocinadores.', '3 · CAPTAÇÃO'],
-     ['Escrevi a proposta do Manual de Compliance e Due Diligence, contra sportswashing, socialwashing e outros riscos ESG.', '4 · GOVERNANÇA'],
-     ['Conduzo a entrada do FdR na Comunidade Common Goal e organizo a documentação de salvaguarda.', '4 · GOVERNANÇA'],
-     ['E-Futebol de Rua: co-liderei a expansão de 30 alunos para mais de 280 adolescentes em 4 estados.', '5 · EXECUÇÃO'],
-     ['Faço a prestação de contas e respondo a diligências, ATOs e RCOs do Ministério do Esporte.', '6 · PRESTAÇÃO DE CONTAS'],
-     ['Criei o autodiagnóstico de Desenvolvimento Institucional e uma proposta de formação para gestores.', '1 · DIAGNÓSTICO']
-    ] },
-  { curto: 'FEDERAÇÃO DE ESPORTS', periodo: 'ago/2022 até hoje', org: 'Federação Paranaense de eSports', cargo: 'Diretor de Operações e Governança (COO)', meta: 'CURITIBA, PR',
-    itens: [
-     ['Dirijo as operações da federação e cuido das políticas de governança e das reformas do estatuto.', '4 · GOVERNANÇA'],
-     ['Gerencio os recursos e faço a ponte entre a presidência, a diretoria e os parceiros.', '5 · EXECUÇÃO']
-    ] },
-  { curto: 'CONFEDERAÇÃO DE FREESTYLE', periodo: 'até dez/2023', org: 'Confederação Brasileira de Futebol Freestyle', cargo: 'Coordenador Esportivo, Educacional e de Eventos', meta: 'CURITIBA, PR',
-    itens: [
-     ['Cuidei de logística, orçamento e contratos de campeonatos nacionais.', '5 · EXECUÇÃO'],
-     ['Co-liderei a produção de 12 semanas de conteúdo digital educativo.', '5 · EXECUÇÃO']
-    ] }
- ];
- var orgBox = document.getElementById('org-abas');
- var orgBts = ORGS.map(function(o, k){
-  var b = el('button', 'lat');
-  b.type = 'button';
-  b.setAttribute('role', 'tab');
-  b.appendChild(el('span', null, o.curto));
-  b.appendChild(el('small', null, o.periodo));
-  b.addEventListener('click', function(){ mostraOrg(k); });
-  orgBox.appendChild(b);
-  return b;
- });
+ var orgAtual = 0;
+ function renderOrgAbas(){
+  preenche('org-abas', D().orgs, function(o){
+   var k = D().orgs.indexOf(o);
+   var b = el('button', 'lat');
+   b.type = 'button';
+   b.setAttribute('role', 'tab');
+   b.appendChild(el('span', null, o.curto));
+   b.appendChild(el('small', null, o.periodo));
+   b.addEventListener('click', function(){ mostraOrg(k); });
+   return b;
+  });
+  mostraOrg(orgAtual);
+ }
  function mostraOrg(k){
-  var o = ORGS[k];
-  orgBts.forEach(function(b, j){ b.setAttribute('aria-selected', String(j === k)); });
+  orgAtual = k;
+  var o = D().orgs[k];
+  Array.prototype.forEach.call(document.getElementById('org-abas').children, function(b, j){ b.setAttribute('aria-selected', String(j === k)); });
   document.getElementById('o-org').textContent = o.org;
   document.getElementById('o-cargo').textContent = o.cargo;
   document.getElementById('o-meta').textContent = o.meta;
@@ -598,42 +573,50 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
    var s = el('span');
    s.appendChild(document.createTextNode(it[0]));
    s.appendChild(document.createElement('br'));
-   s.appendChild(el('span', 'etq', 'ETAPA ' + it[1]));
+   s.appendChild(el('span', 'etq', T('ciclo.etapa') + ' ' + (it[1] + 1) + ' · ' + D().etapas[it[1]].curto));
    li.appendChild(s);
    return li;
   });
  }
- mostraOrg(0);
 
  /* === Projetos (GitHub, via /api/projetos) === */
  var projGrade = document.getElementById('proj-grade');
  var catBts = document.querySelectorAll('[data-cat]');
- var projetos = [];
- var cat = 'todos';
+ var projetos = null, projErro = false, cat = 'todos';
+ function etapaProjeto(p){
+  if (!p.etapa) return '';
+  var m = /^(\d)/.exec(p.etapa);
+  if (m) { var k = Number(m[1]) - 1; return T('ciclo.etapa') + ' ' + (k + 1) + ' · ' + D().etapas[k].curto; }
+  return T('proj.proprio');
+ }
  function renderProj(){
+  projGrade.textContent = '';
+  if (projErro) { projGrade.appendChild(el('div', 'estado', T('proj.erro'))); return; }
+  if (!projetos) { projGrade.appendChild(el('div', 'estado', T('proj.carregando'))); return; }
   var vis = projetos.filter(function(p){
    if (cat === 'jogos') return p.jogo;
    if (cat === 'abertos') return linkOk(p.site);
    if (cat === 'internos') return !linkOk(p.site);
    return true;
   });
-  projGrade.textContent = '';
-  if (!vis.length) { projGrade.appendChild(el('div', 'estado', 'Nenhum projeto neste filtro.')); return; }
+  if (!vis.length) { projGrade.appendChild(el('div', 'estado', T('proj.vazio'))); return; }
   vis.forEach(function(p){
+   var tr = D().projetos[p.nome];
    var aberto = linkOk(p.site);
    var c = el('article', 'proj');
    var m = el('div', 'pmeta');
-   m.appendChild(el('span', aberto ? 'ptag aberto' : 'ptag', aberto ? 'ABERTO AO PÚBLICO' : 'USO INTERNO'));
+   m.appendChild(el('span', aberto ? 'ptag aberto' : 'ptag', aberto ? T('proj.aberto') : T('proj.interno')));
    if (p.linguagem) m.appendChild(el('span', 'mono', p.linguagem));
    c.appendChild(m);
-   c.appendChild(el('h3', 'disp', p.nome));
-   c.appendChild(el('p', null, p.descricao || ''));
-   if (p.etapa) c.appendChild(el('span', 'pcic', 'CICLO · ' + p.etapa.toUpperCase()));
+   c.appendChild(el('h3', 'disp', tr ? tr[0] : p.nome));
+   c.appendChild(el('p', null, tr ? tr[1] : (p.descricao || '')));
+   var et = etapaProjeto(p);
+   if (et) c.appendChild(el('span', 'pcic', T('proj.ciclo') + ' · ' + et.toUpperCase()));
    if (aberto) {
-    var a = el('a', 'pacao', 'VER NO AR ↗'); a.href = p.site; a.target = '_blank'; a.rel = 'noopener';
+    var a = el('a', 'pacao', T('proj.verNoAr')); a.href = p.site; a.target = '_blank'; a.rel = 'noopener';
     c.appendChild(a);
    } else {
-    c.appendChild(el('span', 'pacao', 'USO INTERNO · DEMONSTRAÇÃO SOB CONVERSA'));
+    c.appendChild(el('span', 'pacao', T('proj.demo')));
    }
    projGrade.appendChild(c);
   });
@@ -648,33 +631,71 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
  fetch('/api/projetos').then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(d){
   projetos = (d.projetos || []).slice().sort(function(a, b){ return (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0); });
   renderProj();
- }).catch(function(){
-  projGrade.textContent = '';
-  projGrade.appendChild(el('div', 'estado', 'Não deu para carregar os projetos agora. Veja a lista completa na página de projetos.'));
- });
+ }).catch(function(){ projErro = true; renderProj(); });
 
- /* === Artigos (artigos.json) === */
+ /* === Artigos (artigos.json, sempre em português) === */
  var arts = document.getElementById('arts');
+ var artigos = null;
  function imgOk(u){ if (typeof u !== 'string' || !u.trim()) return false; if (/^https?:\/\//i.test(u)) return true; return !/^[a-zA-Z][a-zA-Z0-9+.\-]*:/.test(u); }
- fetch('artigos.json').then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(lista){
-  var ok = (Array.isArray(lista) ? lista : []).filter(function(a){ return a && a.titulo && linkOk(a.link_artigo); }).slice(0, 6);
-  if (!ok.length) return;
+ function renderArts(){
+  if (!artigos || !artigos.length) return;
   arts.textContent = '';
-  ok.forEach(function(a){
+  artigos.forEach(function(a){
    var c = el('article', 'acard');
+   c.lang = 'pt-BR';
    if (imgOk(a.url_imagem_capa)) { var im = el('img'); im.src = a.url_imagem_capa; im.alt = ''; im.loading = 'lazy'; c.appendChild(im); }
    var b = el('div', 'abody');
-   var eb = el('span', 'eyebrow', 'ARTIGO' + (a.pilar ? ' · ' + a.pilar : '') + (a.data ? ' · ' + a.data : ''));
-   eb.style.fontSize = '11px';
-   b.appendChild(eb);
+   b.appendChild(el('span', 'eyebrow pequeno', T('arts.artigo') + (a.pilar ? ' · ' + a.pilar : '') + (a.data ? ' · ' + a.data : '')));
    b.appendChild(el('h3', 'disp', a.titulo));
    if (a.resumo) b.appendChild(el('p', null, a.resumo));
-   var l = el('a', 'chip solid', 'LER NO LINKEDIN →'); l.href = a.link_artigo; l.target = '_blank'; l.rel = 'noopener';
+   var l = el('a', 'chip solid', T('arts.ler')); l.href = a.link_artigo; l.target = '_blank'; l.rel = 'noopener';
    b.appendChild(l);
    c.appendChild(b);
    arts.appendChild(c);
   });
+ }
+ fetch('artigos.json').then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(lista){
+  artigos = (Array.isArray(lista) ? lista : []).filter(function(a){ return a && a.titulo && linkOk(a.link_artigo); }).slice(0, 6);
+  renderArts();
  }).catch(function(e){ console.warn('Artigos: ' + (e && e.message)); });
+
+ /* === Idioma === */
+ var langBts = document.querySelectorAll('[data-lang]');
+ function escolheIdioma(){
+  try { var q = new URLSearchParams(location.search).get('lang'); if (q && I[q]) return q; } catch (e) {}
+  try { var s = localStorage.getItem('idioma'); if (s && I[s]) return s; } catch (e) {}
+  var nav = (navigator.language || 'pt').toLowerCase();
+  if (nav.indexOf('pt') === 0) return 'pt';
+  if (nav.indexOf('es') === 0) return 'es';
+  if (nav.indexOf('zh') === 0) return 'zh';
+  if (nav.indexOf('en') === 0) return 'en';
+  return 'pt';
+ }
+ function aplicaIdioma(novo, salvar){
+  lang = novo;
+  document.documentElement.lang = LANGS[lang];
+  document.title = D().meta.title;
+  var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', D().meta.desc);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function(n){ n.textContent = T(n.getAttribute('data-i18n')); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-html]'), function(n){ n.innerHTML = T(n.getAttribute('data-i18n-html')); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-alt]'), function(n){ n.alt = T(n.getAttribute('data-i18n-alt')); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-aria]'), function(n){ var v = T(n.getAttribute('data-i18n-aria')); if (v) n.setAttribute('aria-label', v); });
+  document.getElementById('arts-idioma').hidden = !T('arts.idioma');
+  Array.prototype.forEach.call(langBts, function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+  reiniciaDigitacao();
+  renderOds();
+  mostraEtapa(etapaAtual);
+  renderFormacao();
+  renderOrgAbas();
+  renderProj();
+  renderArts();
+  if (salvar) {
+   try { localStorage.setItem('idioma', lang); } catch (e) {}
+   try { var u = new URL(location.href); if (lang === 'pt') u.searchParams.delete('lang'); else u.searchParams.set('lang', lang); history.replaceState(null, '', u); } catch (e) {}
+  }
+ }
+ Array.prototype.forEach.call(langBts, function(b){ b.addEventListener('click', function(){ aplicaIdioma(b.getAttribute('data-lang'), true); }); });
+ aplicaIdioma(escolheIdioma(), false);
 
  /* === Voltar ao topo === */
  var bt = document.querySelector('.totop');
