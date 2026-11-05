@@ -28,6 +28,19 @@ const ETAPAS = {
   "ciclo-prestacao-de-contas": "6 · Prestação de contas",
   "produto-proprio": "Produto próprio",
 };
+// Tópicos "stack-*" viram a linha de tecnologias do card (só o que foi confirmado no código).
+const STACK = {
+  "stack-nextjs": "Next.js",
+  "stack-prisma": "Prisma",
+  "stack-tailwind": "Tailwind",
+  "stack-fastapi": "FastAPI",
+  "stack-expo": "Expo",
+  "stack-react-native": "React Native",
+  "stack-javascript": "JavaScript",
+  "stack-nodejs": "Node.js",
+  "stack-express": "Express",
+  "stack-supabase": "Supabase",
+};
 
 function separarNome(repo) {
   const texto = (repo.description || "").trim();
@@ -54,10 +67,14 @@ function resumo(repo) {
   const topicos = repo.topics || [];
   const { titulo, descricao } = separarNome(repo);
   const siteLiberado = !repo.private || topicos.includes(DEMO);
+  // na ordem de STACK (framework antes de banco e estilo), não na ordem alfabética dos tópicos
+  const stack = Object.keys(STACK).filter((t) => topicos.includes(t)).map((t) => STACK[t]);
   return {
+    repo: repo.name,
     nome: titulo,
     descricao,
     linguagem: repo.language,
+    stack: stack.length ? stack : repo.language ? [repo.language] : [],
     site: siteLiberado ? repo.homepage || null : null,
     codigo: repo.private ? null : repo.html_url,
     privado: repo.private,
@@ -66,7 +83,7 @@ function resumo(repo) {
     etapa: ETAPAS[topicos.find((t) => ETAPAS[t])] || null,
     estrelas: repo.stargazers_count,
     atualizado: repo.pushed_at || repo.updated_at,
-    topicos: topicos.filter((t) => ![TOPICO, DEMO, DESTAQUE, JOGO].includes(t) && !ETAPAS[t]),
+    topicos: topicos.filter((t) => ![TOPICO, DEMO, DESTAQUE, JOGO].includes(t) && !ETAPAS[t] && !STACK[t]),
   };
 }
 

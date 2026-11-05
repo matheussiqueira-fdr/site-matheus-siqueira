@@ -72,8 +72,10 @@ nav a.cta{background:var(--ouro);color:#121212;padding:0 14px;min-height:36px;di
 /* topo */
 .hero{padding:80px 0 72px}
 .hgrid{display:flex;flex-wrap:wrap;gap:48px 56px;align-items:center}
-.hgrid>.txt{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:22px}
-.hgrid>.foto{flex:1 1 320px;max-width:400px}
+.hgrid{flex-wrap:nowrap}
+.hgrid>.txt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:22px}
+.hgrid>.foto{flex:0 1 380px;min-width:240px}
+@media (max-width:700px){.hgrid{flex-wrap:wrap}.hgrid>.foto{flex:1 1 100%;max-width:400px}}
 .oi{font-family:'DM Mono',monospace;font-size:15px;color:var(--claro)}
 .hero h1{font-size:clamp(60px,9vw,128px);line-height:.88}
 .digita{min-height:112px;display:flex;flex-direction:column;gap:6px}
@@ -86,7 +88,7 @@ nav a.cta{background:var(--ouro);color:#121212;padding:0 14px;min-height:36px;di
 .social a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--cinza);padding:12px 0}
 .social a:hover{color:var(--giz)}
 .moldura{position:relative;padding:14px;border:2px solid var(--ouro)}
-.moldura img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.moldura img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
 .selo{position:absolute;left:26px;bottom:26px;background:#121212;color:var(--ouro);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;padding:6px 10px}
 /* números */
 .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -225,30 +227,46 @@ footer{border-top:1px solid var(--line);padding:30px 0 88px}
 .mb28{margin-bottom:28px}.mb36{margin-bottom:36px}.mb0{margin-bottom:0}
 .ouro{color:var(--ouro)}
 .ctxt{flex:1 1 420px}
-/* seletor de idioma */
-.langs{display:flex;gap:2px;margin-left:auto}
-.langs button{min-width:40px;min-height:36px;padding:0 8px;border:1px solid transparent;background:transparent;color:var(--cinza);font-family:'DM Mono','PingFang SC','Microsoft YaHei',monospace;font-size:11px;letter-spacing:.08em}
-.langs button:hover{color:var(--giz)}
-.langs button[aria-pressed="true"]{border-color:var(--ouro);color:var(--ouro)}
-.hrow nav{margin-left:8px}
+/* seletor de idioma compacto */
+.hrow{flex-wrap:nowrap}
+.hrow nav{margin-left:auto;min-width:0}
+.langsel{position:relative;flex:none}
+#lang-btn{min-height:36px;min-width:58px;padding:0 10px;border:1px solid var(--chalk);background:transparent;color:var(--giz);font-family:'DM Mono','PingFang SC','Microsoft YaHei',monospace;font-size:11px;letter-spacing:.1em}
+#lang-btn:hover,#lang-btn[aria-expanded="true"]{border-color:var(--ouro);color:var(--ouro)}
+.lang-menu{position:absolute;right:0;top:calc(100% + 6px);list-style:none;background:#1A1A18;border:1px solid var(--chalk);min-width:170px;z-index:70;padding:4px 0}
+.lang-menu button{width:100%;min-height:42px;padding:0 14px;text-align:left;border:0;background:transparent;color:var(--claro);font-family:'DM Mono','PingFang SC','Microsoft YaHei',monospace;font-size:12px;letter-spacing:.06em}
+.lang-menu button:hover{background:var(--conc);color:var(--giz)}
+.lang-menu button[aria-pressed="true"]{color:var(--ouro)}
+/* digitação: altura de duas linhas reservada, os botões não pulam */
+.digita p{min-height:2em}
+/* próxima etapa */
+.chip.prox{align-self:flex-start;margin-top:4px}
+/* cards de projeto: miniatura e stack */
+.proj{overflow:hidden}
+.proj .capa{display:block;height:auto;width:calc(100% + 48px);margin:-24px -24px 6px;aspect-ratio:16/9;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);transition:transform .35s}
+.proj:hover .capa{transform:scale(1.03)}
+@media (prefers-reduced-motion:reduce){.proj .capa{transition:none}.proj:hover .capa{transform:none}}
+a.pacao.demo{color:var(--giz);border:1px solid var(--chalk);padding:0 14px;align-self:flex-start}
+a.pacao.demo:hover{border-color:var(--ouro);color:var(--ouro)}
+.lido a{color:var(--giz)}
+.lido a:hover{color:var(--ouro)}
 /* mandarim: as fontes do site não têm ideogramas */
 html[lang="zh-CN"] body{font-family:'Work Sans','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif}
 html[lang="zh-CN"] .disp{font-family:'Big Shoulders','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;letter-spacing:.02em;line-height:1.08}
 html[lang="zh-CN"] .disp.nome{line-height:.88}
 html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,html[lang="zh-CN"] .chip,html[lang="zh-CN"] .aba,html[lang="zh-CN"] .lat,html[lang="zh-CN"] .oi,html[lang="zh-CN"] .pcic,html[lang="zh-CN"] .pacao,html[lang="zh-CN"] .ptag,html[lang="zh-CN"] .no span,html[lang="zh-CN"] .etq{font-family:'DM Mono','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',monospace;letter-spacing:.06em}
-@media (max-width:760px){.langs{margin-left:0}.langs button{min-width:34px;padding:0 4px}.hrow nav{margin-left:0}}
+@media (max-width:1100px){
+ .hrow nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ .hrow nav::-webkit-scrollbar{display:none}
+ .hrow nav a{white-space:nowrap}
+}
+@media (max-width:760px){.hrow nav{margin-left:0}}
 </style>
 </head>
 <body>
 <header>
  <div class="wrap hrow">
   <a class="brand" href="#top" aria-label="Início" data-i18n-aria="nav.inicio"><span class="plate">MS</span><span>MATHEUS&nbsp;SIQUEIRA</span></a>
-  <div class="langs" role="group" aria-label="Idioma" data-i18n-aria="idioma">
-   <button type="button" data-lang="pt" lang="pt-BR" aria-pressed="true">PT</button>
-   <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
-   <button type="button" data-lang="es" lang="es" aria-pressed="false">ES</button>
-   <button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">中文</button>
-  </div>
   <nav aria-label="Seções">
    <a href="#ciclo" data-i18n="nav.ciclo">O QUE EU FAÇO</a>
    <a href="#regua" data-i18n="nav.regua">ESG E ODS</a>
@@ -257,6 +275,15 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
    <a href="#artigos" data-i18n="nav.arts">ARTIGOS</a>
    <a class="cta" href="#contato" data-i18n="nav.contato">CONTATO</a>
   </nav>
+  <div class="langsel">
+   <button type="button" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Idioma" data-i18n-aria="idioma"><span id="lang-atual">PT</span> ▾</button>
+   <ul id="lang-menu" class="lang-menu" hidden>
+    <li><button type="button" data-lang="pt" lang="pt-BR" aria-pressed="true">PT · Português</button></li>
+    <li><button type="button" data-lang="en" lang="en" aria-pressed="false">EN · English</button></li>
+    <li><button type="button" data-lang="es" lang="es" aria-pressed="false">ES · Español</button></li>
+    <li><button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">中文 · 简体</button></li>
+   </ul>
+  </div>
  </div>
 </header>
 
@@ -326,6 +353,7 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
      <div class="bloco"><span class="rot" data-i18n="rot.ods">ODS LIGADOS</span><div class="odsl" id="p-ods"></div></div>
     </div>
     <div class="bloco" id="p-proj-box"><span class="rot" data-i18n="rot.sistemas">SISTEMAS QUE CONSTRUÍ PARA ESTA ETAPA</span><p class="g" id="p-proj"></p></div>
+    <button type="button" class="chip prox" id="p-prox"></button>
    </div>
   </div>
  </div>
@@ -413,9 +441,9 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
   </div>
   <div class="lidos">
    <span class="rot" data-i18n="arts.lidos">MAIS LIDOS NO LINKEDIN · NOV/2026</span>
-   <div class="lido"><b>11.922</b><span><strong data-i18n="lido.1">A Noruega não venceu o Brasil nas oitavas</strong><em data-i18n="lido.1d">impressões e 25 comentários no post do artigo</em></span></div>
-   <div class="lido"><b>11.722</b><span><strong data-i18n="lido.2">Michael Olise e o que o feed apagado diz sobre gestão de pessoas</strong><em data-i18n="lido.2d">impressões</em></span></div>
-   <div class="lido"><b>4.453</b><span><strong data-i18n="lido.3">O Marco Legal dos Games e o que muda para projetos incentivados</strong><em data-i18n="lido.3d">impressões e 85 reações</em></span></div>
+   <div class="lido"><b>11.922</b><span><a href="https://www.linkedin.com/feed/update/urn:li:activity:7479897004735901696/" target="_blank" rel="noopener"><strong data-i18n="lido.1">A Noruega não venceu o Brasil nas oitavas</strong> ↗</a><em data-i18n="lido.1d">impressões e 25 comentários no post do artigo</em></span></div>
+   <div class="lido"><b>11.722</b><span><a href="https://www.linkedin.com/feed/update/urn:li:activity:7482218960688431104/" target="_blank" rel="noopener"><strong data-i18n="lido.2">Michael Olise e o que o feed apagado diz sobre gestão de pessoas</strong> ↗</a><em data-i18n="lido.2d">impressões</em></span></div>
+   <div class="lido"><b>4.453</b><span><a href="https://www.linkedin.com/feed/update/urn:li:activity:7516209688049500160/" target="_blank" rel="noopener"><strong data-i18n="lido.3">O Marco Legal dos Games e o que muda para projetos incentivados</strong> ↗</a><em data-i18n="lido.3d">impressões e 85 reações</em></span></div>
   </div>
  </div>
 </section>
@@ -507,6 +535,11 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
   anel.appendChild(b);
   return b;
  });
+ document.getElementById('p-prox').addEventListener('click', function(){
+  mostraEtapa((etapaAtual + 1) % 6);
+  var painel = document.getElementById('painel');
+  if (painel.getBoundingClientRect().top < 0) painel.scrollIntoView({ behavior: calmo ? 'auto' : 'smooth', block: 'start' });
+ });
  function mostraEtapa(k){
   etapaAtual = k;
   var e = D().etapas[k], fixo = ETAPA_FIXO[k];
@@ -523,6 +556,8 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
   preenche('p-ods', fixo.ods, function(n){ var s = el('span', 'odsm', T('ods.sigla') + ' ' + n); s.style.background = ODS_COR[n]; s.title = D().ods[n][0]; return s; });
   document.getElementById('p-proj-box').hidden = !e.proj;
   document.getElementById('p-proj').textContent = e.proj;
+  var prox = document.getElementById('p-prox');
+  prox.textContent = k < 5 ? T('ciclo.proxima') + ': ' + (k + 2) + ' · ' + D().etapas[k + 1].curto + ' →' : T('ciclo.recomeca') + ' ↺';
  }
 
  /* === Sobre mim === */
@@ -580,6 +615,7 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
  }
 
  /* === Projetos (GitHub, via /api/projetos) === */
+ var CAPAS = ['raiox-fdr', 'escale-fc', 'Site-Na-Rua'];
  var projGrade = document.getElementById('proj-grade');
  var catBts = document.querySelectorAll('[data-cat]');
  var projetos = null, projErro = false, cat = 'todos';
@@ -603,12 +639,19 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
   vis.forEach(function(p){
    var tr = D().projetos[p.nome];
    var aberto = linkOk(p.site);
+   var nome = tr ? tr[0] : p.nome;
    var c = el('article', 'proj');
+   // miniatura só de projetos abertos ao público (capturas em /img/projetos/)
+   if (aberto && CAPAS.indexOf(p.repo) >= 0) {
+    var cap = el('img', 'capa'); cap.src = '/img/projetos/' + p.repo + '.jpg'; cap.alt = ''; cap.loading = 'lazy'; cap.width = 640; cap.height = 360;
+    c.appendChild(cap);
+   }
    var m = el('div', 'pmeta');
    m.appendChild(el('span', aberto ? 'ptag aberto' : 'ptag', aberto ? T('proj.aberto') : T('proj.interno')));
-   if (p.linguagem) m.appendChild(el('span', 'mono', p.linguagem));
+   var stack = (p.stack && p.stack.length) ? p.stack : (p.linguagem ? [p.linguagem] : []);
+   if (stack.length) m.appendChild(el('span', 'mono', stack.join(' · ')));
    c.appendChild(m);
-   c.appendChild(el('h3', 'disp', tr ? tr[0] : p.nome));
+   c.appendChild(el('h3', 'disp', nome));
    c.appendChild(el('p', null, tr ? tr[1] : (p.descricao || '')));
    var et = etapaProjeto(p);
    if (et) c.appendChild(el('span', 'pcic', T('proj.ciclo') + ' · ' + et.toUpperCase()));
@@ -616,7 +659,10 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
     var a = el('a', 'pacao', T('proj.verNoAr')); a.href = p.site; a.target = '_blank'; a.rel = 'noopener';
     c.appendChild(a);
    } else {
-    c.appendChild(el('span', 'pacao', T('proj.demo')));
+    var dm = el('a', 'pacao demo', T('proj.demo'));
+    dm.href = 'mailto:contatolauromatheus@gmail.com?subject=' + encodeURIComponent(T('proj.demoAssunto') + ': ' + nome) +
+     '&body=' + encodeURIComponent(T('proj.demoCorpo').replace('{nome}', nome));
+    c.appendChild(dm);
    }
    projGrade.appendChild(c);
   });
@@ -645,7 +691,8 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
    c.lang = 'pt-BR';
    if (imgOk(a.url_imagem_capa)) { var im = el('img'); im.src = a.url_imagem_capa; im.alt = ''; im.loading = 'lazy'; c.appendChild(im); }
    var b = el('div', 'abody');
-   b.appendChild(el('span', 'eyebrow pequeno', T('arts.artigo') + (a.pilar ? ' · ' + a.pilar : '') + (a.data ? ' · ' + a.data : '')));
+   var tema = a.pilar ? (T('pilar.' + a.pilar) || '') : '';
+   b.appendChild(el('span', 'eyebrow pequeno', T('arts.artigo') + (tema ? ' · ' + tema : '') + (a.data ? ' · ' + a.data : '')));
    b.appendChild(el('h3', 'disp', a.titulo));
    if (a.resumo) b.appendChild(el('p', null, a.resumo));
    var l = el('a', 'chip solid', T('arts.ler')); l.href = a.link_artigo; l.target = '_blank'; l.rel = 'noopener';
@@ -682,6 +729,7 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
   Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-aria]'), function(n){ var v = T(n.getAttribute('data-i18n-aria')); if (v) n.setAttribute('aria-label', v); });
   document.getElementById('arts-idioma').hidden = !T('arts.idioma');
   Array.prototype.forEach.call(langBts, function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+  document.getElementById('lang-atual').textContent = { pt: 'PT', en: 'EN', es: 'ES', zh: '中文' }[lang];
   reiniciaDigitacao();
   renderOds();
   mostraEtapa(etapaAtual);
@@ -694,7 +742,12 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
    try { var u = new URL(location.href); if (lang === 'pt') u.searchParams.delete('lang'); else u.searchParams.set('lang', lang); history.replaceState(null, '', u); } catch (e) {}
   }
  }
- Array.prototype.forEach.call(langBts, function(b){ b.addEventListener('click', function(){ aplicaIdioma(b.getAttribute('data-lang'), true); }); });
+ var langBtn = document.getElementById('lang-btn'), langMenu = document.getElementById('lang-menu');
+ function menuIdioma(abrir){ langMenu.hidden = !abrir; langBtn.setAttribute('aria-expanded', String(abrir)); }
+ langBtn.addEventListener('click', function(ev){ ev.stopPropagation(); menuIdioma(langMenu.hidden); });
+ document.addEventListener('click', function(){ menuIdioma(false); });
+ document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape' && !langMenu.hidden) { menuIdioma(false); langBtn.focus(); } });
+ Array.prototype.forEach.call(langBts, function(b){ b.addEventListener('click', function(){ aplicaIdioma(b.getAttribute('data-lang'), true); menuIdioma(false); langBtn.focus(); }); });
  aplicaIdioma(escolheIdioma(), false);
 
  /* === Voltar ao topo === */
