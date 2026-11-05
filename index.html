@@ -40,6 +40,7 @@ html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{background:var(--asf);color:var(--giz);font-family:'Work Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+section[tabindex="-1"]:focus{outline:none}
 img{display:block;max-width:100%}
 button{font:inherit;color:inherit;cursor:pointer}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
@@ -749,6 +750,28 @@ html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .rot,html[lang="zh-CN"] nav a,htm
  document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape' && !langMenu.hidden) { menuIdioma(false); langBtn.focus(); } });
  Array.prototype.forEach.call(langBts, function(b){ b.addEventListener('click', function(){ aplicaIdioma(b.getAttribute('data-lang'), true); menuIdioma(false); langBtn.focus(); }); });
  aplicaIdioma(escolheIdioma(), false);
+
+ /* === Âncoras sem "#" no endereço ===
+    Os links do menu rolam até a seção e o endereço continua limpo (só ?lang= quando houver).
+    Quem chega por um link antigo com #secao vai até ela e o # sai do endereço. */
+ function limpaEndereco(){ try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+ function irPara(id){
+  var alvo = id === 'top' ? document.body : document.getElementById(id);
+  if (!alvo) return false;
+  if (id === 'top') window.scrollTo({ top: 0, behavior: calmo ? 'auto' : 'smooth' });
+  else alvo.scrollIntoView({ behavior: calmo ? 'auto' : 'smooth', block: 'start' });
+  if (id !== 'top') { if (!alvo.hasAttribute('tabindex')) alvo.setAttribute('tabindex', '-1'); alvo.focus({ preventScroll: true }); }
+  return true;
+ }
+ document.addEventListener('click', function(ev){
+  var a = ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
+  if (!a || ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
+  if (irPara(a.getAttribute('href').slice(1))) { ev.preventDefault(); limpaEndereco(); }
+ });
+ if (location.hash.length > 1) {
+  var inicial = decodeURIComponent(location.hash.slice(1));
+  setTimeout(function(){ irPara(inicial); limpaEndereco(); }, 60);
+ }
 
  /* === Voltar ao topo === */
  var bt = document.querySelector('.totop');
